@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="FIT5032_Assignment_Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="FIT5032_Assignment_ModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FIT5032_Assignment_Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="FIT5032_Assignment_ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TrainingCourses" EntityType="FIT5032_Assignment_Model.TrainingCourse" />
+          <EntitySet Name="Users" EntityType="FIT5032_Assignment_Model.User" />
+          <EntitySet Name="Coaches" EntityType="FIT5032_Assignment_Model.Coach" />
+          <EntitySet Name="Roles" EntityType="FIT5032_Assignment_Model.Role" />
+          <EntitySet Name="UserRoles" EntityType="FIT5032_Assignment_Model.UserRole" />
+          <EntitySet Name="CoachRoles" EntityType="FIT5032_Assignment_Model.CoachRole" />
+          <AssociationSet Name="CoachCoachRole" Association="FIT5032_Assignment_Model.CoachCoachRole">
+            <End Role="Coach" EntitySet="Coaches" />
+            <End Role="CoachRole" EntitySet="CoachRoles" />
+          </AssociationSet>
+          <AssociationSet Name="RoleCoachRole" Association="FIT5032_Assignment_Model.RoleCoachRole">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="CoachRole" EntitySet="CoachRoles" />
+          </AssociationSet>
+          <AssociationSet Name="UserUserRole" Association="FIT5032_Assignment_Model.UserUserRole">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="RoleUserRole" Association="FIT5032_Assignment_Model.RoleUserRole">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <EntitySet Name="TrainingCourseTimetables" EntityType="FIT5032_Assignment_Model.TrainingCourseTimetable" />
+          <AssociationSet Name="TrainingCourseTrainingCourseTimetable" Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable">
+            <End Role="TrainingCourse" EntitySet="TrainingCourses" />
+            <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
+          </AssociationSet>
+          <EntitySet Name="TrainningCourseCoaches" EntityType="FIT5032_Assignment_Model.TrainningCourseCoach" />
+          <AssociationSet Name="TrainingCourseTimetableTrainningCourseCoach" Association="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach">
+            <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
+            <End Role="TrainningCourseCoach" EntitySet="TrainningCourseCoaches" />
+          </AssociationSet>
+          <AssociationSet Name="CoachTrainningCourseCoach" Association="FIT5032_Assignment_Model.CoachTrainningCourseCoach">
+            <End Role="Coach" EntitySet="Coaches" />
+            <End Role="TrainningCourseCoach" EntitySet="TrainningCourseCoaches" />
+          </AssociationSet>
+          <EntitySet Name="CourseBookings" EntityType="FIT5032_Assignment_Model.CourseBooking" />
+          <AssociationSet Name="TrainingCourseTimetableCourseBooking" Association="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking">
+            <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
+            <End Role="CourseBooking" EntitySet="CourseBookings" />
+          </AssociationSet>
+          <AssociationSet Name="UserCourseBooking" Association="FIT5032_Assignment_Model.UserCourseBooking">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CourseBooking" EntitySet="CourseBookings" />
+          </AssociationSet>
+          <AssociationSet Name="TrainingCourseTrainingCourse" Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourse">
+            <End Role="TrainingCourse" EntitySet="TrainingCourses" />
+            <End Role="TrainingCourse1" EntitySet="TrainingCourses" />
+          </AssociationSet>
+          <EntitySet Name="UserSkills" EntityType="FIT5032_Assignment_Model.UserSkills" />
+          <AssociationSet Name="UserUserSkills" Association="FIT5032_Assignment_Model.UserUserSkills">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserSkills" EntitySet="UserSkills" />
+          </AssociationSet>
+          <AssociationSet Name="TrainingCourseUserSkills" Association="FIT5032_Assignment_Model.TrainingCourseUserSkills">
+            <End Role="TrainingCourse" EntitySet="TrainingCourses" />
+            <End Role="UserSkills" EntitySet="UserSkills" />
+          </AssociationSet>
+          <EntitySet Name="CourseWishLists" EntityType="FIT5032_Assignment_Model.CourseWishList" />
+          <AssociationSet Name="UserCourseWishList" Association="FIT5032_Assignment_Model.UserCourseWishList">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CourseWishList" EntitySet="CourseWishLists" />
+          </AssociationSet>
+          <AssociationSet Name="TrainingCourseCourseWishList" Association="FIT5032_Assignment_Model.TrainingCourseCourseWishList">
+            <End Role="TrainingCourse" EntitySet="TrainingCourses" />
+            <End Role="CourseWishList" EntitySet="CourseWishLists" />
+          </AssociationSet>
+          <EntitySet Name="SubScribes" EntityType="FIT5032_Assignment_Model.SubScribe" />
+        </EntityContainer>
+        <EntityType Name="TrainingCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" Nullable="false" />
+          <Property Name="CourseCapacity" Type="Int32" Nullable="false" />
+          <Property Name="CourseHeldLocation" Type="String" Nullable="true" />
+          <NavigationProperty Name="TrainingCourseTimetables" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable" FromRole="TrainingCourse" ToRole="TrainingCourseTimetable" />
+          <Property Name="CourseDescribtion" Type="String" Nullable="true" />
+          <NavigationProperty Name="TrainingCourse1" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" FromRole="TrainingCourse" ToRole="TrainingCourse1" />
+          <NavigationProperty Name="preRequestCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" FromRole="TrainingCourse1" ToRole="TrainingCourse" />
+          <Property Name="IsOver" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserSkills" Relationship="FIT5032_Assignment_Model.TrainingCourseUserSkills" FromRole="TrainingCourse" ToRole="UserSkills" />
+          <NavigationProperty Name="CourseWishLists" Relationship="FIT5032_Assignment_Model.TrainingCourseCourseWishList" FromRole="TrainingCourse" ToRole="CourseWishList" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="true" />
+          <Property Name="LastName" Type="String" Nullable="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="true" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="UserRoles" Relationship="FIT5032_Assignment_Model.UserUserRole" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="CourseBookings" Relationship="FIT5032_Assignment_Model.UserCourseBooking" FromRole="User" ToRole="CourseBooking" />
+          <NavigationProperty Name="UserSkills" Relationship="FIT5032_Assignment_Model.UserUserSkills" FromRole="User" ToRole="UserSkills" />
+          <NavigationProperty Name="CourseWishLists" Relationship="FIT5032_Assignment_Model.UserCourseWishList" FromRole="User" ToRole="CourseWishList" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="true" />
+          <Property Name="LastName" Type="String" Nullable="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="true" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="CoachRoles" Relationship="FIT5032_Assignment_Model.CoachCoachRole" FromRole="Coach" ToRole="CoachRole" />
+          <NavigationProperty Name="TrainningCourseCoaches" Relationship="FIT5032_Assignment_Model.CoachTrainningCourseCoach" FromRole="Coach" ToRole="TrainningCourseCoach" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="CoachRoles" Relationship="FIT5032_Assignment_Model.RoleCoachRole" FromRole="Role" ToRole="CoachRole" />
+          <NavigationProperty Name="UserRoles" Relationship="FIT5032_Assignment_Model.RoleUserRole" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="FIT5032_Assignment_Model.UserUserRole" FromRole="UserRole" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="FIT5032_Assignment_Model.RoleUserRole" FromRole="UserRole" ToRole="Role" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoachRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Coach" Relationship="FIT5032_Assignment_Model.CoachCoachRole" FromRole="CoachRole" ToRole="Coach" />
+          <Property Name="CoachId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="FIT5032_Assignment_Model.RoleCoachRole" FromRole="CoachRole" ToRole="Role" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="CoachCoachRole">
+          <End Type="FIT5032_Assignment_Model.Coach" Role="Coach" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CoachRole" Role="CoachRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoachRole">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleCoachRole">
+          <End Type="FIT5032_Assignment_Model.Role" Role="Role" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CoachRole" Role="CoachRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoachRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserUserRole">
+          <End Type="FIT5032_Assignment_Model.User" Role="User" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleUserRole">
+          <End Type="FIT5032_Assignment_Model.Role" Role="Role" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TrainingCourseTimetable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseStartTime" Type="DateTime" Nullable="false" />
+          <Property Name="CourseEndTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CourseId" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable" FromRole="TrainingCourseTimetable" ToRole="TrainingCourse" />
+          <Property Name="TrainingCourseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TrainningCourseCoaches" Relationship="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" FromRole="TrainingCourseTimetable" ToRole="TrainningCourseCoach" />
+          <NavigationProperty Name="CourseBookings" Relationship="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking" FromRole="TrainingCourseTimetable" ToRole="CourseBooking" />
+          <Property Name="IsLastOne" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="TrainingCourseTrainingCourseTimetable">
+          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.TrainingCourseTimetable" Role="TrainingCourseTimetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingCourseTimetable">
+              <PropertyRef Name="TrainingCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TrainningCourseCoach">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TrainingCourseTimetable" Relationship="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" FromRole="TrainningCourseCoach" ToRole="TrainingCourseTimetable" />
+          <Property Name="TrainingCourseTimetableId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Coach" Relationship="FIT5032_Assignment_Model.CoachTrainningCourseCoach" FromRole="TrainningCourseCoach" ToRole="Coach" />
+          <Property Name="CoachId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="TrainingCourseTimetableTrainningCourseCoach">
+          <End Type="FIT5032_Assignment_Model.TrainingCourseTimetable" Role="TrainingCourseTimetable" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.TrainningCourseCoach" Role="TrainningCourseCoach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourseTimetable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainningCourseCoach">
+              <PropertyRef Name="TrainingCourseTimetableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CoachTrainningCourseCoach">
+          <End Type="FIT5032_Assignment_Model.Coach" Role="Coach" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.TrainningCourseCoach" Role="TrainningCourseCoach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainningCourseCoach">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CourseBooking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TrainingCourseTimetable" Relationship="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking" FromRole="CourseBooking" ToRole="TrainingCourseTimetable" />
+          <Property Name="TrainingCourseTimetableId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="FIT5032_Assignment_Model.UserCourseBooking" FromRole="CourseBooking" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Feedback" Type="String" Nullable="true" />
+          <Property Name="BookingTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="TrainingCourseTimetableCourseBooking">
+          <End Type="FIT5032_Assignment_Model.TrainingCourseTimetable" Role="TrainingCourseTimetable" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CourseBooking" Role="CourseBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourseTimetable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseBooking">
+              <PropertyRef Name="TrainingCourseTimetableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserCourseBooking">
+          <End Type="FIT5032_Assignment_Model.User" Role="User" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CourseBooking" Role="CourseBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseBooking">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TrainingCourseTrainingCourse">
+          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse1" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="UserSkills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="FIT5032_Assignment_Model.UserUserSkills" FromRole="UserSkills" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TrainingCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseUserSkills" FromRole="UserSkills" ToRole="TrainingCourse" />
+          <Property Name="TrainingCourseId" Type="Int32" Nullable="false" />
+          <Property Name="SkillReceivedDate" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UserUserSkills">
+          <End Type="FIT5032_Assignment_Model.User" Role="User" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.UserSkills" Role="UserSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSkills">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TrainingCourseUserSkills">
+          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.UserSkills" Role="UserSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSkills">
+              <PropertyRef Name="TrainingCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CourseWishList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="FIT5032_Assignment_Model.UserCourseWishList" FromRole="CourseWishList" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TrainingCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseCourseWishList" FromRole="CourseWishList" ToRole="TrainingCourse" />
+          <Property Name="TrainingCourseId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserCourseWishList">
+          <End Type="FIT5032_Assignment_Model.User" Role="User" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CourseWishList" Role="CourseWishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseWishList">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TrainingCourseCourseWishList">
+          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CourseWishList" Role="CourseWishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseWishList">
+              <PropertyRef Name="TrainingCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SubScribe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubscribeEmail" Type="String" Nullable="false" />
+          <Property Name="SubscribeType" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="FIT5032_Assignment_Model" />
+        <Alias Key="Target" Value="FIT5032_Assignment_Model.Store" />
+        <EntityContainerMapping CdmEntityContainer="FIT5032_Assignment_ModelContainer" StorageEntityContainer="FIT5032_Assignment_ModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

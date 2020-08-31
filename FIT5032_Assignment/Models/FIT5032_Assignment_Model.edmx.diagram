@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="07d4ced7356a4b9f9a8222db6a529a9c" Name="Diagram1" ZoomLevel="101" >
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.TrainingCourse" Width="2.875" PointX="19.5" PointY="4.625" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.User" Width="1.5" PointX="5.75" PointY="4.25" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.Coach" Width="1.5" PointX="9" PointY="4.125" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.Role" Width="1.5" PointX="7.25" PointY="10.25" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.UserRole" Width="1.5" PointX="5.75" PointY="7.625" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.CoachRole" Width="1.5" PointX="8.875" PointY="7" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.CoachCoachRole" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.RoleCoachRole" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.UserUserRole" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.RoleUserRole" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.TrainingCourseTimetable" Width="1.5" PointX="15.625" PointY="4.75" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.TrainningCourseCoach" Width="1.5" PointX="11.875" PointY="4.625" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.CoachTrainningCourseCoach" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseBooking" Width="1.5" PointX="10.375" PointY="1.25" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.UserCourseBooking" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.UserSkills" Width="1.5" PointX="3.125" PointY="2" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.UserUserSkills" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseUserSkills" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseWishList" Width="1.5" PointX="7.125" PointY="1.125" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.UserCourseWishList" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseCourseWishList" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.SubScribe" Width="1.5" PointX="2.625" PointY="7.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
