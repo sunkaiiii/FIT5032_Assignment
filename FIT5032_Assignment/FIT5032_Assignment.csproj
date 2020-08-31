@@ -182,6 +182,28 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Coach.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CoachRole.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CourseBooking.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CourseWishList.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FIT5032_Assignment_Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIT5032_Assignment_Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FIT5032_Assignment_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FIT5032_Assignment_Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -189,10 +211,38 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubScribe.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrainingCourse.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrainingCourseTimetable.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrainningCourseCoach.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRole.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserSkills.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FIT5032_Assignment.mdf" />
+    <Content Include="App_Data\FIT5032_Assignment_log.ldf">
+      <DependentUpon>FIT5032_Assignment.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -201,6 +251,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\FIT5032_Assignment_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FIT5032_Assignment_Model.Context.cs</LastGenOutput>
+      <DependentUpon>FIT5032_Assignment_Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FIT5032_Assignment_Model.edmx.sql" />
+    <Content Include="Models\FIT5032_Assignment_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FIT5032_Assignment_Model.cs</LastGenOutput>
+      <DependentUpon>FIT5032_Assignment_Model.edmx</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="secrets.config" />
@@ -257,9 +318,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -272,6 +331,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
