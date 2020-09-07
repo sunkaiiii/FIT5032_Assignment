@@ -12,18 +12,13 @@ namespace FIT5032_Assignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class AspNetUserClaim
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
-        {
-            this.UserRoles = new HashSet<UserRole>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

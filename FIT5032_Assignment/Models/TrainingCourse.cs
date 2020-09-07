@@ -17,6 +17,7 @@ namespace FIT5032_Assignment.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TrainingCourse()
         {
+            this.Rate = 0;
             this.TrainingCourseTimetables = new HashSet<TrainingCourseTimetable>();
             this.UserSkills = new HashSet<UserSkills>();
             this.CourseWishLists = new HashSet<CourseWishList>();
@@ -28,6 +29,8 @@ namespace FIT5032_Assignment.Models
         public string CourseHeldLocation { get; set; }
         public string CourseDescribtion { get; set; }
         public bool IsOver { get; set; }
+        public short Rate { get; set; }
+        public string AspNetUserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrainingCourseTimetable> TrainingCourseTimetables { get; set; }
@@ -37,5 +40,6 @@ namespace FIT5032_Assignment.Models
         public virtual ICollection<UserSkills> UserSkills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseWishList> CourseWishLists { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

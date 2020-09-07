@@ -4,36 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="07d4ced7356a4b9f9a8222db6a529a9c" Name="Diagram1" ZoomLevel="95" >
+      <Diagram DiagramId="07d4ced7356a4b9f9a8222db6a529a9c" Name="Diagram1" ZoomLevel="74" >
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.TrainingCourse" Width="2.875" PointX="19.5" PointY="4.625" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.User" Width="1.5" PointX="5.75" PointY="4.25" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.Coach" Width="1.5" PointX="9" PointY="4.125" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.Role" Width="1.5" PointX="7.5" PointY="12.625" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.TrainingCourseTimetable" Width="1.5" PointX="15.625" PointY="4.75" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.TrainningCourseCoach" Width="2.375" PointX="11.875" PointY="4.625" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.CoachTrainningCourseCoach" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseBooking" Width="1.5" PointX="10.375" PointY="1.25" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.UserCourseBooking" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.UserSkills" Width="1.5" PointX="3.125" PointY="2" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.UserUserSkills" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseUserSkills" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseWishList" Width="1.5" PointX="7.125" PointY="1.125" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.UserCourseWishList" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseCourseWishList" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.SubScribe" Width="1.5" PointX="4.25" PointY="7.125" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.BasicUser" Width="1.5" PointX="7.375" PointY="6.875" />
-        <InheritanceConnector EntityType="FIT5032_Assignment_Model.User" />
-        <InheritanceConnector EntityType="FIT5032_Assignment_Model.Coach" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.BasicUserSubScribe" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.UserRole" Width="1.5" PointX="7.5" PointY="10.125" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.BasicUserUserRole" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.RoleUserRole" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetRole" Width="1.5" PointX="1.375" PointY="8.5" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserClaim" Width="1.5" PointX="3" PointY="16.875" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserLogin" Width="1.5" PointX="3" PointY="14.25" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserRole" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUser" Width="1.5" PointX="9" PointY="5.25" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetRoles" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetUser" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserCourseWishList" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserCourseBooking" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserSubScribe" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserTrainingCourse" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserUserSkills" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserTrainningCourseCoach" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

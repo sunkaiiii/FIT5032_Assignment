@@ -16,10 +16,10 @@ namespace FIT5032_Assignment.Models
     {
         public int Id { get; set; }
         public System.DateTime InsertDate { get; set; }
-        public int UserId { get; set; }
         public int TrainingCourseId { get; set; }
+        public string AspNetUserId { get; set; }
     
-        public virtual User User { get; set; }
         public virtual TrainingCourse TrainingCourse { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

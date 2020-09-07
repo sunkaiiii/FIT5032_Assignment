@@ -16,8 +16,8 @@ namespace FIT5032_Assignment.Models
     {
         public int Id { get; set; }
         public int SubscribeType { get; set; }
-        public int BasicUserId { get; set; }
+        public string AspNetUserId { get; set; }
     
-        public virtual BasicUser BasicUser { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -12,13 +12,12 @@ namespace FIT5032_Assignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserRole
+    public partial class AspNetUserLogin
     {
-        public int Id { get; set; }
-        public int BasicUserId { get; set; }
-        public int RoleId { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
     
-        public virtual BasicUser BasicUser { get; set; }
-        public virtual Role Role { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

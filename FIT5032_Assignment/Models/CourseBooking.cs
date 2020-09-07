@@ -16,11 +16,11 @@ namespace FIT5032_Assignment.Models
     {
         public int Id { get; set; }
         public int TrainingCourseTimetableId { get; set; }
-        public int UserId { get; set; }
         public string Feedback { get; set; }
         public System.DateTime BookingTime { get; set; }
+        public string AspNetUserId { get; set; }
     
         public virtual TrainingCourseTimetable TrainingCourseTimetable { get; set; }
-        public virtual User User { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

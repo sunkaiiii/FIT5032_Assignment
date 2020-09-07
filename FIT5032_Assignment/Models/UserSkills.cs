@@ -15,11 +15,11 @@ namespace FIT5032_Assignment.Models
     public partial class UserSkills
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
         public int TrainingCourseId { get; set; }
         public string SkillReceivedDate { get; set; }
+        public string AspNetUserId { get; set; }
     
-        public virtual User User { get; set; }
         public virtual TrainingCourse TrainingCourse { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -12,22 +12,18 @@ namespace FIT5032_Assignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User : BasicUser
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public AspNetRole()
         {
-            this.CourseBookings = new HashSet<CourseBooking>();
-            this.UserSkills = new HashSet<UserSkills>();
-            this.CourseWishLists = new HashSet<CourseWishList>();
+            this.AspNetUserRoles = new HashSet<AspNetUserRole>();
         }
     
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseBooking> CourseBookings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSkills> UserSkills { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseWishList> CourseWishLists { get; set; }
+        public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
     }
 }

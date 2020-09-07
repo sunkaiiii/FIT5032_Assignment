@@ -182,10 +182,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BasicUser.cs">
+    <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Coach.cs">
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseBooking.cs">
@@ -211,9 +220,6 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SubScribe.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
@@ -226,12 +232,6 @@
     <Compile Include="Models\TrainningCourseCoach.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserRole.cs">
-      <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UserSkills.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
@@ -240,9 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\FIT5032_Assignment.mdf" />
-    <Content Include="App_Data\FIT5032_Assignment_log.ldf">
-      <DependentUpon>FIT5032_Assignment.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -256,7 +253,6 @@
       <LastGenOutput>FIT5032_Assignment_Model.Context.cs</LastGenOutput>
       <DependentUpon>FIT5032_Assignment_Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\FIT5032_Assignment_Model.edmx.sql" />
     <Content Include="Models\FIT5032_Assignment_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FIT5032_Assignment_Model.cs</LastGenOutput>

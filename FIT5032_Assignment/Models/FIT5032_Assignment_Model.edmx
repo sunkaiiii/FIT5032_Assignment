@@ -4,393 +4,317 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FIT5032_Assignment_Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="FIT5032_Assignment_ModelStoreContainer">
-    <EntitySet Name="TrainingCourses" EntityType="FIT5032_Assignment_Model.Store.TrainingCourses" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Roles" EntityType="FIT5032_Assignment_Model.Store.Roles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TrainingCourseTimetables" EntityType="FIT5032_Assignment_Model.Store.TrainingCourseTimetables" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TrainningCourseCoaches" EntityType="FIT5032_Assignment_Model.Store.TrainningCourseCoaches" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CourseBookings" EntityType="FIT5032_Assignment_Model.Store.CourseBookings" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserSkills" EntityType="FIT5032_Assignment_Model.Store.UserSkills" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CourseWishLists" EntityType="FIT5032_Assignment_Model.Store.CourseWishLists" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SubScribes" EntityType="FIT5032_Assignment_Model.Store.SubScribes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BasicUsers" EntityType="FIT5032_Assignment_Model.Store.BasicUsers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserRoles" EntityType="FIT5032_Assignment_Model.Store.UserRoles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BasicUsers_Coach" EntityType="FIT5032_Assignment_Model.Store.BasicUsers_Coach" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BasicUsers_User" EntityType="FIT5032_Assignment_Model.Store.BasicUsers_User" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="TrainingCourseTrainingCourseTimetable" Association="FIT5032_Assignment_Model.Store.TrainingCourseTrainingCourseTimetable">
-      <End Role="TrainingCourse" EntitySet="TrainingCourses" />
-      <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
-    </AssociationSet>
-    <AssociationSet Name="TrainingCourseTimetableTrainningCourseCoach" Association="FIT5032_Assignment_Model.Store.TrainingCourseTimetableTrainningCourseCoach">
-      <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
-      <End Role="TrainningCourseCoach" EntitySet="TrainningCourseCoaches" />
-    </AssociationSet>
-    <AssociationSet Name="CoachTrainningCourseCoach" Association="FIT5032_Assignment_Model.Store.CoachTrainningCourseCoach">
-      <End Role="Coach" EntitySet="BasicUsers_Coach" />
-      <End Role="TrainningCourseCoach" EntitySet="TrainningCourseCoaches" />
-    </AssociationSet>
-    <AssociationSet Name="TrainingCourseTimetableCourseBooking" Association="FIT5032_Assignment_Model.Store.TrainingCourseTimetableCourseBooking">
-      <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
-      <End Role="CourseBooking" EntitySet="CourseBookings" />
-    </AssociationSet>
-    <AssociationSet Name="UserCourseBooking" Association="FIT5032_Assignment_Model.Store.UserCourseBooking">
-      <End Role="User" EntitySet="BasicUsers_User" />
-      <End Role="CourseBooking" EntitySet="CourseBookings" />
-    </AssociationSet>
-    <AssociationSet Name="TrainingCourseTrainingCourse" Association="FIT5032_Assignment_Model.Store.TrainingCourseTrainingCourse">
-      <End Role="TrainingCourse" EntitySet="TrainingCourses" />
-      <End Role="TrainingCourse1" EntitySet="TrainingCourses" />
-    </AssociationSet>
-    <AssociationSet Name="UserUserSkills" Association="FIT5032_Assignment_Model.Store.UserUserSkills">
-      <End Role="User" EntitySet="BasicUsers_User" />
-      <End Role="UserSkills" EntitySet="UserSkills" />
-    </AssociationSet>
-    <AssociationSet Name="TrainingCourseUserSkills" Association="FIT5032_Assignment_Model.Store.TrainingCourseUserSkills">
-      <End Role="TrainingCourse" EntitySet="TrainingCourses" />
-      <End Role="UserSkills" EntitySet="UserSkills" />
-    </AssociationSet>
-    <AssociationSet Name="UserCourseWishList" Association="FIT5032_Assignment_Model.Store.UserCourseWishList">
-      <End Role="User" EntitySet="BasicUsers_User" />
-      <End Role="CourseWishList" EntitySet="CourseWishLists" />
-    </AssociationSet>
-    <AssociationSet Name="TrainingCourseCourseWishList" Association="FIT5032_Assignment_Model.Store.TrainingCourseCourseWishList">
-      <End Role="TrainingCourse" EntitySet="TrainingCourses" />
-      <End Role="CourseWishList" EntitySet="CourseWishLists" />
-    </AssociationSet>
-    <AssociationSet Name="BasicUserSubScribe" Association="FIT5032_Assignment_Model.Store.BasicUserSubScribe">
-      <End Role="BasicUser" EntitySet="BasicUsers" />
-      <End Role="SubScribe" EntitySet="SubScribes" />
-    </AssociationSet>
-    <AssociationSet Name="BasicUserUserRole" Association="FIT5032_Assignment_Model.Store.BasicUserUserRole">
-      <End Role="BasicUser" EntitySet="BasicUsers" />
-      <End Role="UserRole" EntitySet="UserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="RoleUserRole" Association="FIT5032_Assignment_Model.Store.RoleUserRole">
-      <End Role="Role" EntitySet="Roles" />
-      <End Role="UserRole" EntitySet="UserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Coach_inherits_BasicUser" Association="FIT5032_Assignment_Model.Store.FK_Coach_inherits_BasicUser">
-      <End Role="BasicUser" EntitySet="BasicUsers" />
-      <End Role="Coach" EntitySet="BasicUsers_Coach" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_inherits_BasicUser" Association="FIT5032_Assignment_Model.Store.FK_User_inherits_BasicUser">
-      <End Role="BasicUser" EntitySet="BasicUsers" />
-      <End Role="User" EntitySet="BasicUsers_User" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="TrainingCourses">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CourseName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CourseCapacity" Type="int" Nullable="false" />
-    <Property Name="CourseHeldLocation" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="CourseDescribtion" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="IsOver" Type="bit" Nullable="false" />
-    <Property Name="preRequestCourse_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Roles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TrainingCourseTimetables">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CourseStartTime" Type="datetime" Nullable="false" />
-    <Property Name="CourseEndTime" Type="datetime" Nullable="false" />
-    <Property Name="TrainingCourseId" Type="int" Nullable="false" />
-    <Property Name="IsLastOne" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TrainningCourseCoaches">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TrainingCourseTimetableId" Type="int" Nullable="false" />
-    <Property Name="CoachId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CourseBookings">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TrainingCourseTimetableId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Feedback" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="BookingTime" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserSkills">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="TrainingCourseId" Type="int" Nullable="false" />
-    <Property Name="SkillReceivedDate" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CourseWishLists">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="InsertDate" Type="datetime" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="TrainingCourseId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SubScribes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SubscribeType" Type="int" Nullable="false" />
-    <Property Name="BasicUserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="BasicUsers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Birthday" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="registerTime" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserRoles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="BasicUserId" Type="int" Nullable="false" />
-    <Property Name="RoleId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="BasicUsers_Coach">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="BasicUsers_User">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="TrainingCourseTrainingCourseTimetable">
-    <End Role="TrainingCourse" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="TrainingCourseTimetable" Type="FIT5032_Assignment_Model.Store.TrainingCourseTimetables" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrainingCourse">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TrainingCourseTimetable">
-        <PropertyRef Name="TrainingCourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TrainingCourseTimetableTrainningCourseCoach">
-    <End Role="TrainingCourseTimetable" Type="FIT5032_Assignment_Model.Store.TrainingCourseTimetables" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="TrainningCourseCoach" Type="FIT5032_Assignment_Model.Store.TrainningCourseCoaches" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrainingCourseTimetable">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TrainningCourseCoach">
-        <PropertyRef Name="TrainingCourseTimetableId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CoachTrainningCourseCoach">
-    <End Role="Coach" Type="FIT5032_Assignment_Model.Store.BasicUsers_Coach" Multiplicity="1" />
-    <End Role="TrainningCourseCoach" Type="FIT5032_Assignment_Model.Store.TrainningCourseCoaches" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Coach">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TrainningCourseCoach">
-        <PropertyRef Name="CoachId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TrainingCourseTimetableCourseBooking">
-    <End Role="TrainingCourseTimetable" Type="FIT5032_Assignment_Model.Store.TrainingCourseTimetables" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="CourseBooking" Type="FIT5032_Assignment_Model.Store.CourseBookings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrainingCourseTimetable">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourseBooking">
-        <PropertyRef Name="TrainingCourseTimetableId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserCourseBooking">
-    <End Role="User" Type="FIT5032_Assignment_Model.Store.BasicUsers_User" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="CourseBooking" Type="FIT5032_Assignment_Model.Store.CourseBookings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourseBooking">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TrainingCourseTrainingCourse">
-    <End Role="TrainingCourse" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="1" />
-    <End Role="TrainingCourse1" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrainingCourse">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TrainingCourse1">
-        <PropertyRef Name="preRequestCourse_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserUserSkills">
-    <End Role="User" Type="FIT5032_Assignment_Model.Store.BasicUsers_User" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="UserSkills" Type="FIT5032_Assignment_Model.Store.UserSkills" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserSkills">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TrainingCourseUserSkills">
-    <End Role="TrainingCourse" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="1" />
-    <End Role="UserSkills" Type="FIT5032_Assignment_Model.Store.UserSkills" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrainingCourse">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserSkills">
-        <PropertyRef Name="TrainingCourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserCourseWishList">
-    <End Role="User" Type="FIT5032_Assignment_Model.Store.BasicUsers_User" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="CourseWishList" Type="FIT5032_Assignment_Model.Store.CourseWishLists" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourseWishList">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TrainingCourseCourseWishList">
-    <End Role="TrainingCourse" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="CourseWishList" Type="FIT5032_Assignment_Model.Store.CourseWishLists" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrainingCourse">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourseWishList">
-        <PropertyRef Name="TrainingCourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="BasicUserSubScribe">
-    <End Role="BasicUser" Type="FIT5032_Assignment_Model.Store.BasicUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="SubScribe" Type="FIT5032_Assignment_Model.Store.SubScribes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BasicUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SubScribe">
-        <PropertyRef Name="BasicUserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="BasicUserUserRole">
-    <End Role="BasicUser" Type="FIT5032_Assignment_Model.Store.BasicUsers" Multiplicity="1" />
-    <End Role="UserRole" Type="FIT5032_Assignment_Model.Store.UserRoles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BasicUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserRole">
-        <PropertyRef Name="BasicUserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RoleUserRole">
-    <End Role="Role" Type="FIT5032_Assignment_Model.Store.Roles" Multiplicity="1" />
-    <End Role="UserRole" Type="FIT5032_Assignment_Model.Store.UserRoles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserRole">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Coach_inherits_BasicUser">
-    <End Role="BasicUser" Type="FIT5032_Assignment_Model.Store.BasicUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Coach" Type="FIT5032_Assignment_Model.Store.BasicUsers_Coach" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="BasicUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Coach">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_User_inherits_BasicUser">
-    <End Role="BasicUser" Type="FIT5032_Assignment_Model.Store.BasicUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="User" Type="FIT5032_Assignment_Model.Store.BasicUsers_User" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="BasicUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="FIT5032_Assignment_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourseBookings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingCourseTimetableId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Feedback" Type="nvarchar(max)" />
+          <Property Name="BookingTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourseWishLists">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsertDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="TrainingCourseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubScribes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubscribeType" Type="int" Nullable="false" />
+          <Property Name="BasicUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingCourses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CourseCapacity" Type="int" Nullable="false" />
+          <Property Name="CourseHeldLocation" Type="nvarchar(max)" />
+          <Property Name="CourseDescribtion" Type="nvarchar(max)" />
+          <Property Name="IsOver" Type="bit" Nullable="false" />
+          <Property Name="preRequestCourse_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingCourseTimetables">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseStartTime" Type="datetime" Nullable="false" />
+          <Property Name="CourseEndTime" Type="datetime" Nullable="false" />
+          <Property Name="TrainingCourseId" Type="int" Nullable="false" />
+          <Property Name="IsLastOne" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainningCourseCoaches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingCourseTimetableId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSkills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="TrainingCourseId" Type="int" Nullable="false" />
+          <Property Name="SkillReceivedDate" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AspNetUserRoles_AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingCourseCourseWishList">
+          <End Role="TrainingCourses" Type="Self.TrainingCourses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseWishLists" Type="Self.CourseWishLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseWishLists">
+              <PropertyRef Name="TrainingCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingCourseTimetableCourseBooking">
+          <End Role="TrainingCourseTimetables" Type="Self.TrainingCourseTimetables" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseBookings" Type="Self.CourseBookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourseTimetables">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseBookings">
+              <PropertyRef Name="TrainingCourseTimetableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingCourseTimetableTrainningCourseCoach">
+          <End Role="TrainingCourseTimetables" Type="Self.TrainingCourseTimetables" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TrainningCourseCoaches" Type="Self.TrainningCourseCoaches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourseTimetables">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainningCourseCoaches">
+              <PropertyRef Name="TrainingCourseTimetableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingCourseTrainingCourse">
+          <End Role="TrainingCourses" Type="Self.TrainingCourses" Multiplicity="1" />
+          <End Role="TrainingCourses1" Type="Self.TrainingCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingCourses1">
+              <PropertyRef Name="preRequestCourse_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingCourseTrainingCourseTimetable">
+          <End Role="TrainingCourses" Type="Self.TrainingCourses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TrainingCourseTimetables" Type="Self.TrainingCourseTimetables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingCourseTimetables">
+              <PropertyRef Name="TrainingCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingCourseUserSkills">
+          <End Role="TrainingCourses" Type="Self.TrainingCourses" Multiplicity="1" />
+          <End Role="UserSkills" Type="Self.UserSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCourses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSkills">
+              <PropertyRef Name="TrainingCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FIT5032_Assignment_ModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseBookings" EntityType="Self.CourseBookings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseWishLists" EntityType="Self.CourseWishLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubScribes" EntityType="Self.SubScribes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingCourses" EntityType="Self.TrainingCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingCourseTimetables" EntityType="Self.TrainingCourseTimetables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainningCourseCoaches" EntityType="Self.TrainningCourseCoaches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSkills" EntityType="Self.UserSkills" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Self.FK_AspNetUserRoles_AspNetRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUser" Association="Self.FK_AspNetUserRoles_AspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingCourseCourseWishList" Association="Self.FK_TrainingCourseCourseWishList">
+            <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+            <End Role="CourseWishLists" EntitySet="CourseWishLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingCourseTimetableCourseBooking" Association="Self.FK_TrainingCourseTimetableCourseBooking">
+            <End Role="TrainingCourseTimetables" EntitySet="TrainingCourseTimetables" />
+            <End Role="CourseBookings" EntitySet="CourseBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingCourseTimetableTrainningCourseCoach" Association="Self.FK_TrainingCourseTimetableTrainningCourseCoach">
+            <End Role="TrainingCourseTimetables" EntitySet="TrainingCourseTimetables" />
+            <End Role="TrainningCourseCoaches" EntitySet="TrainningCourseCoaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingCourseTrainingCourse" Association="Self.FK_TrainingCourseTrainingCourse">
+            <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+            <End Role="TrainingCourses1" EntitySet="TrainingCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingCourseTrainingCourseTimetable" Association="Self.FK_TrainingCourseTrainingCourseTimetable">
+            <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+            <End Role="TrainingCourseTimetables" EntitySet="TrainingCourseTimetables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingCourseUserSkills" Association="Self.FK_TrainingCourseUserSkills">
+            <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+            <End Role="UserSkills" EntitySet="UserSkills" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FIT5032_Assignment_Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="FIT5032_Assignment_ModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TrainingCourses" EntityType="FIT5032_Assignment_Model.TrainingCourse" />
-          <EntitySet Name="Roles" EntityType="FIT5032_Assignment_Model.Role" />
           <EntitySet Name="TrainingCourseTimetables" EntityType="FIT5032_Assignment_Model.TrainingCourseTimetable" />
           <AssociationSet Name="TrainingCourseTrainingCourseTimetable" Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable">
             <End Role="TrainingCourse" EntitySet="TrainingCourses" />
@@ -401,17 +325,9 @@
             <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
             <End Role="TrainningCourseCoach" EntitySet="TrainningCourseCoaches" />
           </AssociationSet>
-          <AssociationSet Name="CoachTrainningCourseCoach" Association="FIT5032_Assignment_Model.CoachTrainningCourseCoach">
-            <End Role="Coach" EntitySet="BasicUsers" />
-            <End Role="TrainningCourseCoach" EntitySet="TrainningCourseCoaches" />
-          </AssociationSet>
           <EntitySet Name="CourseBookings" EntityType="FIT5032_Assignment_Model.CourseBooking" />
           <AssociationSet Name="TrainingCourseTimetableCourseBooking" Association="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking">
             <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
-            <End Role="CourseBooking" EntitySet="CourseBookings" />
-          </AssociationSet>
-          <AssociationSet Name="UserCourseBooking" Association="FIT5032_Assignment_Model.UserCourseBooking">
-            <End Role="User" EntitySet="BasicUsers" />
             <End Role="CourseBooking" EntitySet="CourseBookings" />
           </AssociationSet>
           <AssociationSet Name="TrainingCourseTrainingCourse" Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourse">
@@ -419,37 +335,60 @@
             <End Role="TrainingCourse1" EntitySet="TrainingCourses" />
           </AssociationSet>
           <EntitySet Name="UserSkills" EntityType="FIT5032_Assignment_Model.UserSkills" />
-          <AssociationSet Name="UserUserSkills" Association="FIT5032_Assignment_Model.UserUserSkills">
-            <End Role="User" EntitySet="BasicUsers" />
-            <End Role="UserSkills" EntitySet="UserSkills" />
-          </AssociationSet>
           <AssociationSet Name="TrainingCourseUserSkills" Association="FIT5032_Assignment_Model.TrainingCourseUserSkills">
             <End Role="TrainingCourse" EntitySet="TrainingCourses" />
             <End Role="UserSkills" EntitySet="UserSkills" />
           </AssociationSet>
           <EntitySet Name="CourseWishLists" EntityType="FIT5032_Assignment_Model.CourseWishList" />
-          <AssociationSet Name="UserCourseWishList" Association="FIT5032_Assignment_Model.UserCourseWishList">
-            <End Role="User" EntitySet="BasicUsers" />
-            <End Role="CourseWishList" EntitySet="CourseWishLists" />
-          </AssociationSet>
           <AssociationSet Name="TrainingCourseCourseWishList" Association="FIT5032_Assignment_Model.TrainingCourseCourseWishList">
             <End Role="TrainingCourse" EntitySet="TrainingCourses" />
             <End Role="CourseWishList" EntitySet="CourseWishLists" />
           </AssociationSet>
           <EntitySet Name="SubScribes" EntityType="FIT5032_Assignment_Model.SubScribe" />
-          <EntitySet Name="BasicUsers" EntityType="FIT5032_Assignment_Model.BasicUser" />
-          <AssociationSet Name="BasicUserSubScribe" Association="FIT5032_Assignment_Model.BasicUserSubScribe">
-            <End Role="BasicUser" EntitySet="BasicUsers" />
+          <EntitySet Name="AspNetRoles" EntityType="FIT5032_Assignment_Model.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="FIT5032_Assignment_Model.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="FIT5032_Assignment_Model.AspNetUserLogin" />
+          <EntitySet Name="AspNetUserRoles" EntityType="FIT5032_Assignment_Model.AspNetUserRole" />
+          <EntitySet Name="AspNetUsers" EntityType="FIT5032_Assignment_Model.AspNetUser" />
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="FIT5032_Assignment_Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="FIT5032_Assignment_Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUser" Association="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserCourseWishList" Association="FIT5032_Assignment_Model.AspNetUserCourseWishList">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="CourseWishList" EntitySet="CourseWishLists" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserCourseBooking" Association="FIT5032_Assignment_Model.AspNetUserCourseBooking">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="CourseBooking" EntitySet="CourseBookings" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserSubScribe" Association="FIT5032_Assignment_Model.AspNetUserSubScribe">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="SubScribe" EntitySet="SubScribes" />
           </AssociationSet>
-          <EntitySet Name="UserRoles" EntityType="FIT5032_Assignment_Model.UserRole" />
-          <AssociationSet Name="BasicUserUserRole" Association="FIT5032_Assignment_Model.BasicUserUserRole">
-            <End Role="BasicUser" EntitySet="BasicUsers" />
-            <End Role="UserRole" EntitySet="UserRoles" />
+          <AssociationSet Name="AspNetUserTrainingCourse" Association="FIT5032_Assignment_Model.AspNetUserTrainingCourse">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TrainingCourse" EntitySet="TrainingCourses" />
           </AssociationSet>
-          <AssociationSet Name="RoleUserRole" Association="FIT5032_Assignment_Model.RoleUserRole">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="UserRole" EntitySet="UserRoles" />
+          <AssociationSet Name="AspNetUserUserSkills" Association="FIT5032_Assignment_Model.AspNetUserUserSkills">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserSkills" EntitySet="UserSkills" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserTrainningCourseCoach" Association="FIT5032_Assignment_Model.AspNetUserTrainningCourseCoach">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TrainningCourseCoach" EntitySet="TrainningCourseCoaches" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="TrainingCourse">
@@ -457,40 +396,27 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseName" Type="String" Nullable="false" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="CourseCapacity" Type="Int32" Nullable="false" />
-          <Property Name="CourseHeldLocation" Type="String" Nullable="true" />
+          <Property Name="CourseHeldLocation" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="TrainingCourseTimetables" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable" FromRole="TrainingCourse" ToRole="TrainingCourseTimetable" />
-          <Property Name="CourseDescribtion" Type="String" Nullable="true" />
+          <Property Name="CourseDescribtion" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="TrainingCourse1" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" FromRole="TrainingCourse" ToRole="TrainingCourse1" />
           <NavigationProperty Name="preRequestCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" FromRole="TrainingCourse1" ToRole="TrainingCourse" />
           <Property Name="IsOver" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserSkills" Relationship="FIT5032_Assignment_Model.TrainingCourseUserSkills" FromRole="TrainingCourse" ToRole="UserSkills" />
           <NavigationProperty Name="CourseWishLists" Relationship="FIT5032_Assignment_Model.TrainingCourseCourseWishList" FromRole="TrainingCourse" ToRole="CourseWishList" />
-        </EntityType>
-        <EntityType Name="User" BaseType="FIT5032_Assignment_Model.BasicUser">
-          <NavigationProperty Name="CourseBookings" Relationship="FIT5032_Assignment_Model.UserCourseBooking" FromRole="User" ToRole="CourseBooking" />
-          <NavigationProperty Name="UserSkills" Relationship="FIT5032_Assignment_Model.UserUserSkills" FromRole="User" ToRole="UserSkills" />
-          <NavigationProperty Name="CourseWishLists" Relationship="FIT5032_Assignment_Model.UserCourseWishList" FromRole="User" ToRole="CourseWishList" />
-        </EntityType>
-        <EntityType Name="Coach" BaseType="FIT5032_Assignment_Model.BasicUser">
-          <NavigationProperty Name="TrainningCourseCoaches" Relationship="FIT5032_Assignment_Model.CoachTrainningCourseCoach" FromRole="Coach" ToRole="TrainningCourseCoach" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="UserRoles" Relationship="FIT5032_Assignment_Model.RoleUserRole" FromRole="Role" ToRole="UserRole" />
+          <Property Name="Rate" Type="Int16" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserTrainingCourse" FromRole="TrainingCourse" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TrainingCourseTimetable">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseStartTime" Type="DateTime" Nullable="false" />
-          <Property Name="CourseEndTime" Type="DateTime" Nullable="false" />
+          <Property Name="CourseStartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CourseEndTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CourseId" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable" FromRole="TrainingCourseTimetable" ToRole="TrainingCourse" />
           <Property Name="TrainingCourseId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TrainningCourseCoaches" Relationship="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" FromRole="TrainingCourseTimetable" ToRole="TrainningCourseCoach" />
@@ -518,8 +444,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="TrainingCourseTimetable" Relationship="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" FromRole="TrainningCourseCoach" ToRole="TrainingCourseTimetable" />
           <Property Name="TrainingCourseTimetableId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Coach" Relationship="FIT5032_Assignment_Model.CoachTrainningCourseCoach" FromRole="TrainningCourseCoach" ToRole="Coach" />
-          <Property Name="CoachId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserTrainningCourseCoach" FromRole="TrainningCourseCoach" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="TrainingCourseTimetableTrainningCourseCoach">
           <End Type="FIT5032_Assignment_Model.TrainingCourseTimetable" Role="TrainingCourseTimetable" Multiplicity="1" >
@@ -535,18 +461,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CoachTrainningCourseCoach">
-          <End Type="FIT5032_Assignment_Model.Coach" Role="Coach" Multiplicity="1" />
-          <End Type="FIT5032_Assignment_Model.TrainningCourseCoach" Role="TrainningCourseCoach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coach">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TrainningCourseCoach">
-              <PropertyRef Name="CoachId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="CourseBooking">
           <Key>
             <PropertyRef Name="Id" />
@@ -554,10 +468,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="TrainingCourseTimetable" Relationship="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking" FromRole="CourseBooking" ToRole="TrainingCourseTimetable" />
           <Property Name="TrainingCourseTimetableId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="FIT5032_Assignment_Model.UserCourseBooking" FromRole="CourseBooking" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Feedback" Type="String" Nullable="true" />
-          <Property Name="BookingTime" Type="DateTime" Nullable="false" />
+          <Property Name="Feedback" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BookingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserCourseBooking" FromRole="CourseBooking" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="TrainingCourseTimetableCourseBooking">
           <End Type="FIT5032_Assignment_Model.TrainingCourseTimetable" Role="TrainingCourseTimetable" Multiplicity="1" >
@@ -573,20 +487,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserCourseBooking">
-          <End Type="FIT5032_Assignment_Model.User" Role="User" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="FIT5032_Assignment_Model.CourseBooking" Role="CourseBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourseBooking">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="TrainingCourseTrainingCourse">
           <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" >
           </End>
@@ -597,26 +497,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="User" Relationship="FIT5032_Assignment_Model.UserUserSkills" FromRole="UserSkills" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TrainingCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseUserSkills" FromRole="UserSkills" ToRole="TrainingCourse" />
           <Property Name="TrainingCourseId" Type="Int32" Nullable="false" />
-          <Property Name="SkillReceivedDate" Type="String" Nullable="false" />
+          <Property Name="SkillReceivedDate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserUserSkills" FromRole="UserSkills" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="UserUserSkills">
-          <End Type="FIT5032_Assignment_Model.User" Role="User" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="FIT5032_Assignment_Model.UserSkills" Role="UserSkills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserSkills">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="TrainingCourseUserSkills">
           <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" />
           <End Type="FIT5032_Assignment_Model.UserSkills" Role="UserSkills" Multiplicity="*" />
@@ -634,26 +520,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InsertDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="FIT5032_Assignment_Model.UserCourseWishList" FromRole="CourseWishList" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="TrainingCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseCourseWishList" FromRole="CourseWishList" ToRole="TrainingCourse" />
           <Property Name="TrainingCourseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserCourseWishList" FromRole="CourseWishList" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="UserCourseWishList">
-          <End Type="FIT5032_Assignment_Model.User" Role="User" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="FIT5032_Assignment_Model.CourseWishList" Role="CourseWishList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourseWishList">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="TrainingCourseCourseWishList">
           <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" >
             <OnDelete Action="Cascade" />
@@ -674,68 +546,197 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubscribeType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BasicUser" Relationship="FIT5032_Assignment_Model.BasicUserSubScribe" FromRole="SubScribe" ToRole="BasicUser" />
-          <Property Name="BasicUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserSubScribe" FromRole="SubScribe" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="BasicUser" Abstract="true">
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetRoles" FromRole="AspNetRole" ToRole="AspNetUserRole" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" />
-          <Property Name="LastName" Type="String" Nullable="false" />
-          <Property Name="Birthday" Type="String" Nullable="true" />
-          <Property Name="Password" Type="String" Nullable="false" />
-          <Property Name="registerTime" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="SubScribes" Relationship="FIT5032_Assignment_Model.BasicUserSubScribe" FromRole="BasicUser" ToRole="SubScribe" />
-          <NavigationProperty Name="UserRoles" Relationship="FIT5032_Assignment_Model.BasicUserUserRole" FromRole="BasicUser" ToRole="UserRole" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
         </EntityType>
-        <Association Name="BasicUserSubScribe">
-          <End Type="FIT5032_Assignment_Model.BasicUser" Role="BasicUser" Multiplicity="1" >
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRole" Relationship="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetRoles" FromRole="AspNetUserRole" ToRole="AspNetRole" />
+          <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetUser" FromRole="AspNetUserRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="FIT5032_Assignment_Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="FIT5032_Assignment_Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetUser" FromRole="AspNetUser" ToRole="AspNetUserRole" />
+          <NavigationProperty Name="CourseWishLists" Relationship="FIT5032_Assignment_Model.AspNetUserCourseWishList" FromRole="AspNetUser" ToRole="CourseWishList" />
+          <NavigationProperty Name="CourseBookings" Relationship="FIT5032_Assignment_Model.AspNetUserCourseBooking" FromRole="AspNetUser" ToRole="CourseBooking" />
+          <NavigationProperty Name="SubScribes" Relationship="FIT5032_Assignment_Model.AspNetUserSubScribe" FromRole="AspNetUser" ToRole="SubScribe" />
+          <NavigationProperty Name="TrainingCourses" Relationship="FIT5032_Assignment_Model.AspNetUserTrainingCourse" FromRole="AspNetUser" ToRole="TrainingCourse" />
+          <NavigationProperty Name="UserSkills" Relationship="FIT5032_Assignment_Model.AspNetUserUserSkills" FromRole="AspNetUser" ToRole="UserSkills" />
+          <NavigationProperty Name="TrainningCourseCoaches" Relationship="FIT5032_Assignment_Model.AspNetUserTrainningCourseCoach" FromRole="AspNetUser" ToRole="TrainningCourseCoach" />
+        </EntityType>
+        <Association Name="FK_AspNetUserRoles_AspNetRoles">
+          <End Type="FIT5032_Assignment_Model.AspNetRole" Role="AspNetRole" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
+          <End Type="FIT5032_Assignment_Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FIT5032_Assignment_Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUser">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserCourseWishList">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CourseWishList" Role="CourseWishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseWishList">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserCourseBooking">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.CourseBooking" Role="CourseBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseBooking">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserSubScribe">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="FIT5032_Assignment_Model.SubScribe" Role="SubScribe" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BasicUser">
+            <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="SubScribe">
-              <PropertyRef Name="BasicUserId" />
+              <PropertyRef Name="AspNetUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="BasicUser" Relationship="FIT5032_Assignment_Model.BasicUserUserRole" FromRole="UserRole" ToRole="BasicUser" />
-          <Property Name="BasicUserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="FIT5032_Assignment_Model.RoleUserRole" FromRole="UserRole" ToRole="Role" />
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <Association Name="BasicUserUserRole">
-          <End Type="FIT5032_Assignment_Model.BasicUser" Role="BasicUser" Multiplicity="1" />
-          <End Type="FIT5032_Assignment_Model.UserRole" Role="UserRole" Multiplicity="*" />
+        <Association Name="AspNetUserTrainingCourse">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BasicUser">
+            <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserRole">
-              <PropertyRef Name="BasicUserId" />
+            <Dependent Role="TrainingCourse">
+              <PropertyRef Name="AspNetUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RoleUserRole">
-          <End Type="FIT5032_Assignment_Model.Role" Role="Role" Multiplicity="1" />
-          <End Type="FIT5032_Assignment_Model.UserRole" Role="UserRole" Multiplicity="*" />
+        <Association Name="AspNetUserUserSkills">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.UserSkills" Role="UserSkills" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Role">
+            <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserRole">
-              <PropertyRef Name="RoleId" />
+            <Dependent Role="UserSkills">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserTrainningCourseCoach">
+          <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="FIT5032_Assignment_Model.TrainningCourseCoach" Role="TrainningCourseCoach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainningCourseCoach">
+              <PropertyRef Name="AspNetUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -757,14 +758,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="IsTypeOf(FIT5032_Assignment_Model.Role)">
-        <MappingFragment StoreEntitySet="Roles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TrainingCourseTimetables">
       <EntityTypeMapping TypeName="IsTypeOf(FIT5032_Assignment_Model.TrainingCourseTimetable)">
         <MappingFragment StoreEntitySet="TrainingCourseTimetables">
@@ -781,7 +774,6 @@
         <MappingFragment StoreEntitySet="TrainningCourseCoaches">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TrainingCourseTimetableId" ColumnName="TrainingCourseTimetableId" />
-          <ScalarProperty Name="CoachId" ColumnName="CoachId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -790,7 +782,6 @@
         <MappingFragment StoreEntitySet="CourseBookings">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TrainingCourseTimetableId" ColumnName="TrainingCourseTimetableId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Feedback" ColumnName="Feedback" />
           <ScalarProperty Name="BookingTime" ColumnName="BookingTime" />
         </MappingFragment>
@@ -800,7 +791,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(FIT5032_Assignment_Model.UserSkills)">
         <MappingFragment StoreEntitySet="UserSkills">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="TrainingCourseId" ColumnName="TrainingCourseId" />
           <ScalarProperty Name="SkillReceivedDate" ColumnName="SkillReceivedDate" />
         </MappingFragment>
@@ -811,7 +801,6 @@
         <MappingFragment StoreEntitySet="CourseWishLists">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="TrainingCourseId" ColumnName="TrainingCourseId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -821,39 +810,6 @@
         <MappingFragment StoreEntitySet="SubScribes">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SubscribeType" ColumnName="SubscribeType" />
-          <ScalarProperty Name="BasicUserId" ColumnName="BasicUserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="BasicUsers">
-      <EntityTypeMapping TypeName="IsTypeOf(FIT5032_Assignment_Model.BasicUser)">
-        <MappingFragment StoreEntitySet="BasicUsers">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="registerTime" ColumnName="registerTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(FIT5032_Assignment_Model.Coach)">
-        <MappingFragment StoreEntitySet="BasicUsers_Coach">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(FIT5032_Assignment_Model.User)">
-        <MappingFragment StoreEntitySet="BasicUsers_User">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserRoles">
-      <EntityTypeMapping TypeName="IsTypeOf(FIT5032_Assignment_Model.UserRole)">
-        <MappingFragment StoreEntitySet="UserRoles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="BasicUserId" ColumnName="BasicUserId" />
-          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -865,6 +821,60 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="FIT5032_Assignment_Model.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="FIT5032_Assignment_Model.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="FIT5032_Assignment_Model.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRoles">
+            <EntityTypeMapping TypeName="FIT5032_Assignment_Model.AspNetUserRole">
+              <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="FIT5032_Assignment_Model.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -881,6 +891,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

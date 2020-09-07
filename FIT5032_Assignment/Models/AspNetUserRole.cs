@@ -12,16 +12,13 @@ namespace FIT5032_Assignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Coach : BasicUser
+    public partial class AspNetUserRole
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Coach()
-        {
-            this.TrainningCourseCoaches = new HashSet<TrainningCourseCoach>();
-        }
+        public int Id { get; set; }
+        public string RoleId { get; set; }
+        public string UserId { get; set; }
     
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TrainningCourseCoach> TrainningCourseCoaches { get; set; }
+        public virtual AspNetRole AspNetRole { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }
