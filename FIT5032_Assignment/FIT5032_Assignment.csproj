@@ -182,10 +182,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Coach.cs">
+    <Compile Include="Models\BasicUser.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CoachRole.cs">
+    <Compile Include="Models\Coach.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseBooking.cs">

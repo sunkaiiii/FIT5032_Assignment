@@ -15,7 +15,9 @@ namespace FIT5032_Assignment.Models
     public partial class SubScribe
     {
         public int Id { get; set; }
-        public string SubscribeEmail { get; set; }
         public int SubscribeType { get; set; }
+        public int BasicUserId { get; set; }
+    
+        public virtual BasicUser BasicUser { get; set; }
     }
 }

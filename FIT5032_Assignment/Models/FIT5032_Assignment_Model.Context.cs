@@ -26,16 +26,14 @@ namespace FIT5032_Assignment.Models
         }
     
         public virtual DbSet<TrainingCourse> TrainingCourses { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Coach> Coaches { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
-        public virtual DbSet<CoachRole> CoachRoles { get; set; }
         public virtual DbSet<TrainingCourseTimetable> TrainingCourseTimetables { get; set; }
         public virtual DbSet<TrainningCourseCoach> TrainningCourseCoaches { get; set; }
         public virtual DbSet<CourseBooking> CourseBookings { get; set; }
         public virtual DbSet<UserSkills> UserSkills { get; set; }
         public virtual DbSet<CourseWishList> CourseWishLists { get; set; }
         public virtual DbSet<SubScribe> SubScribes { get; set; }
+        public virtual DbSet<BasicUser> BasicUsers { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
     }
 }

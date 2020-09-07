@@ -12,22 +12,26 @@ namespace FIT5032_Assignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User : BasicUser
+    public abstract partial class BasicUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public BasicUser()
         {
-            this.CourseBookings = new HashSet<CourseBooking>();
-            this.UserSkills = new HashSet<UserSkills>();
-            this.CourseWishLists = new HashSet<CourseWishList>();
+            this.SubScribes = new HashSet<SubScribe>();
+            this.UserRoles = new HashSet<UserRole>();
         }
     
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Birthday { get; set; }
+        public string Password { get; set; }
+        public System.DateTime registerTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseBooking> CourseBookings { get; set; }
+        public virtual ICollection<SubScribe> SubScribes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSkills> UserSkills { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseWishList> CourseWishLists { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }
