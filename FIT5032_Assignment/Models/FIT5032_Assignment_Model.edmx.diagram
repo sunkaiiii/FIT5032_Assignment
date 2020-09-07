@@ -18,11 +18,11 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseWishList" Width="1.5" PointX="7.125" PointY="1.125" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseCourseWishList" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.SubScribe" Width="1.5" PointX="4.25" PointY="7.125" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.SubScribe" Width="1.5" PointX="12.25" PointY="7.625" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetRole" Width="1.5" PointX="1.375" PointY="8.5" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserClaim" Width="1.5" PointX="3" PointY="16.875" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserLogin" Width="1.5" PointX="3" PointY="14.25" />
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserRole" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserClaim" Width="1.5" PointX="6.5" PointY="10.625" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserLogin" Width="1.5" PointX="6.125" PointY="6" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUserRole" Width="1.5" PointX="4.625" PointY="8.125" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetUser" Width="1.5" PointX="9" PointY="5.25" />
         <AssociationConnector Association="FIT5032_Assignment_Model.FK_AspNetUserRoles_AspNetRoles" />
         <AssociationConnector Association="FIT5032_Assignment_Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
