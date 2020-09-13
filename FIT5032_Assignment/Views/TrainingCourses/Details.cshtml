@@ -1,0 +1,83 @@
+﻿@model FIT5032_Assignment.Models.TrainingCourse
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TrainingCourse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseHeldLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseHeldLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseDescribtion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseDescribtion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOver)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOver)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreRequestId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreRequestId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

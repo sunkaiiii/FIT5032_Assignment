@@ -31,11 +31,10 @@ namespace FIT5032_Assignment.Models
         public bool IsOver { get; set; }
         public short Rate { get; set; }
         public string AspNetUserId { get; set; }
+        public Nullable<int> PreRequestId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrainingCourseTimetable> TrainingCourseTimetables { get; set; }
-        public virtual TrainingCourse TrainingCourse1 { get; set; }
-        public virtual TrainingCourse preRequestCourse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSkills> UserSkills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

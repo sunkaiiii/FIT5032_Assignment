@@ -12,11 +12,10 @@
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseBooking" Width="1.5" PointX="10.375" PointY="1.25" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.UserSkills" Width="1.5" PointX="3.125" PointY="2" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseUserSkills" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseWishList" Width="1.5" PointX="7.125" PointY="1.125" />
+        <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseWishList" Width="1.5" PointX="7.125" PointY="0.625" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseCourseWishList" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.SubScribe" Width="1.5" PointX="12.25" PointY="7.625" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.AspNetRole" Width="1.5" PointX="1.375" PointY="8.5" />

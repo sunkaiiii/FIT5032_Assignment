@@ -30,10 +30,6 @@
       <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
       <End Role="CourseBooking" EntitySet="CourseBookings" />
     </AssociationSet>
-    <AssociationSet Name="TrainingCourseTrainingCourse" Association="FIT5032_Assignment_Model.Store.TrainingCourseTrainingCourse">
-      <End Role="TrainingCourse" EntitySet="TrainingCourses" />
-      <End Role="TrainingCourse1" EntitySet="TrainingCourses" />
-    </AssociationSet>
     <AssociationSet Name="TrainingCourseUserSkills" Association="FIT5032_Assignment_Model.Store.TrainingCourseUserSkills">
       <End Role="TrainingCourse" EntitySet="TrainingCourses" />
       <End Role="UserSkills" EntitySet="UserSkills" />
@@ -95,7 +91,7 @@
     <Property Name="IsOver" Type="bit" Nullable="false" />
     <Property Name="Rate" Type="smallint" Nullable="false" DefaultValue="0" />
     <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="preRequestCourse_Id" Type="int" Nullable="false" />
+    <Property Name="PreRequestId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="TrainingCourseTimetables">
     <Key>
@@ -183,7 +179,7 @@
       <PropertyRef Name="RoleId" />
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleId" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
@@ -204,6 +200,7 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="TrainingCourseTrainingCourseTimetable">
     <End Role="TrainingCourse" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="1">
@@ -244,18 +241,6 @@
       </Principal>
       <Dependent Role="CourseBooking">
         <PropertyRef Name="TrainingCourseTimetableId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TrainingCourseTrainingCourse">
-    <End Role="TrainingCourse" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="1" />
-    <End Role="TrainingCourse1" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrainingCourse">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TrainingCourse1">
-        <PropertyRef Name="preRequestCourse_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -380,9 +365,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AspNetUserTrainingCourse">
-    <End Role="AspNetUser" Type="FIT5032_Assignment_Model.Store.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="AspNetUser" Type="FIT5032_Assignment_Model.Store.AspNetUsers" Multiplicity="1" />
     <End Role="TrainingCourse" Type="FIT5032_Assignment_Model.Store.TrainingCourses" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUser">
@@ -441,10 +424,6 @@
           <AssociationSet Name="TrainingCourseTimetableCourseBooking" Association="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking">
             <End Role="TrainingCourseTimetable" EntitySet="TrainingCourseTimetables" />
             <End Role="CourseBooking" EntitySet="CourseBookings" />
-          </AssociationSet>
-          <AssociationSet Name="TrainingCourseTrainingCourse" Association="FIT5032_Assignment_Model.TrainingCourseTrainingCourse">
-            <End Role="TrainingCourse" EntitySet="TrainingCourses" />
-            <End Role="TrainingCourse1" EntitySet="TrainingCourses" />
           </AssociationSet>
           <EntitySet Name="UserSkills" EntityType="FIT5032_Assignment_Model.UserSkills" />
           <AssociationSet Name="TrainingCourseUserSkills" Association="FIT5032_Assignment_Model.TrainingCourseUserSkills">
@@ -513,14 +492,13 @@
           <Property Name="CourseHeldLocation" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="TrainingCourseTimetables" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourseTimetable" FromRole="TrainingCourse" ToRole="TrainingCourseTimetable" />
           <Property Name="CourseDescribtion" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="TrainingCourse1" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" FromRole="TrainingCourse" ToRole="TrainingCourse1" />
-          <NavigationProperty Name="preRequestCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" FromRole="TrainingCourse1" ToRole="TrainingCourse" />
           <Property Name="IsOver" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserSkills" Relationship="FIT5032_Assignment_Model.TrainingCourseUserSkills" FromRole="TrainingCourse" ToRole="UserSkills" />
           <NavigationProperty Name="CourseWishLists" Relationship="FIT5032_Assignment_Model.TrainingCourseCourseWishList" FromRole="TrainingCourse" ToRole="CourseWishList" />
           <Property Name="Rate" Type="Int16" Nullable="false" DefaultValue="0" />
           <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserTrainingCourse" FromRole="TrainingCourse" ToRole="AspNetUser" />
-          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="128" />
+          <Property Name="PreRequestId" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="TrainingCourseTimetable">
           <Key>
@@ -598,11 +576,6 @@
               <PropertyRef Name="TrainingCourseTimetableId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="TrainingCourseTrainingCourse">
-          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="1" >
-          </End>
-          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse1" Multiplicity="0..1" />
         </Association>
         <EntityType Name="UserSkills">
           <Key>
@@ -826,9 +799,8 @@
         </Association>
         <Association Name="AspNetUserTrainingCourse">
           <End Type="FIT5032_Assignment_Model.AspNetUser" Role="AspNetUser" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
           </End>
-          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="*" />
+          <End Type="FIT5032_Assignment_Model.TrainingCourse" Role="TrainingCourse" Multiplicity="*" ></End>
           <ReferentialConstraint>
             <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
@@ -883,6 +855,7 @@
           <ScalarProperty Name="IsOver" ColumnName="IsOver" />
           <ScalarProperty Name="Rate" ColumnName="Rate" />
           <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="PreRequestId" ColumnName="PreRequestId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -998,17 +971,10 @@
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="TrainingCourseTrainingCourse" TypeName="FIT5032_Assignment_Model.TrainingCourseTrainingCourse" StoreEntitySet="TrainingCourses">
-      <EndProperty Name="TrainingCourse">
-        <ScalarProperty Name="Id" ColumnName="preRequestCourse_Id" />
-      </EndProperty>
-      <EndProperty Name="TrainingCourse1">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/07/2020 17:25:54
+-- Date Created: 09/13/2020 15:23:44
 -- Generated from EDMX file: D:\Documents\GitHub\FIT5032_Assignment\FIT5032_Assignment\Models\FIT5032_Assignment_Model.edmx
 -- --------------------------------------------------
 
@@ -25,9 +25,6 @@ IF OBJECT_ID(N'[dbo].[FK_TrainingCourseTimetableTrainningCourseCoach]', 'F') IS 
 GO
 IF OBJECT_ID(N'[dbo].[FK_TrainingCourseTimetableCourseBooking]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourseBookings] DROP CONSTRAINT [FK_TrainingCourseTimetableCourseBooking];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TrainingCourseTrainingCourse]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TrainingCourses] DROP CONSTRAINT [FK_TrainingCourseTrainingCourse];
 GO
 IF OBJECT_ID(N'[dbo].[FK_TrainingCourseUserSkills]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserSkills] DROP CONSTRAINT [FK_TrainingCourseUserSkills];
@@ -121,7 +118,7 @@ CREATE TABLE [dbo].[TrainingCourses] (
     [IsOver] bit  NOT NULL,
     [Rate] smallint  NOT NULL,
     [AspNetUserId] nvarchar(128)  NOT NULL,
-    [preRequestCourse_Id] int  NOT NULL
+    [PreRequestId] int  NULL
 );
 GO
 
@@ -205,7 +202,7 @@ GO
 
 -- Creating table 'AspNetUserRoles'
 CREATE TABLE [dbo].[AspNetUserRoles] (
-    [Id] int  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [RoleId] nvarchar(128)  NOT NULL,
     [UserId] nvarchar(128)  NOT NULL
 );
@@ -225,7 +222,8 @@ CREATE TABLE [dbo].[AspNetUsers] (
     [LockoutEnabled] bit  NOT NULL,
     [AccessFailedCount] int  NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
-    [LastName] nvarchar(max)  NOT NULL
+    [LastName] nvarchar(max)  NOT NULL,
+    [UserName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -352,21 +350,6 @@ GO
 CREATE INDEX [IX_FK_TrainingCourseTimetableCourseBooking]
 ON [dbo].[CourseBookings]
     ([TrainingCourseTimetableId]);
-GO
-
--- Creating foreign key on [preRequestCourse_Id] in table 'TrainingCourses'
-ALTER TABLE [dbo].[TrainingCourses]
-ADD CONSTRAINT [FK_TrainingCourseTrainingCourse]
-    FOREIGN KEY ([preRequestCourse_Id])
-    REFERENCES [dbo].[TrainingCourses]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrainingCourseTrainingCourse'
-CREATE INDEX [IX_FK_TrainingCourseTrainingCourse]
-ON [dbo].[TrainingCourses]
-    ([preRequestCourse_Id]);
 GO
 
 -- Creating foreign key on [TrainingCourseId] in table 'UserSkills'
@@ -510,7 +493,7 @@ ADD CONSTRAINT [FK_AspNetUserTrainingCourse]
     FOREIGN KEY ([AspNetUserId])
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserTrainingCourse'

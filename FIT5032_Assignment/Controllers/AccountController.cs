@@ -87,7 +87,7 @@ namespace FIT5032_Assignment.Controllers
             }
 
             // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            // To enable password failures to trigger account lockout, change to shouldLockout: 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -169,7 +169,16 @@ namespace FIT5032_Assignment.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    await UserManager.AddToRoleAsync(user.Id, "User");
+                    string role;
+                    if(model.RoleId == "1")
+                    {
+                        role = "User";
+                    }
+                    else
+                    {
+                        role = "Coach";
+                    }
+                    await UserManager.AddToRoleAsync(user.Id, role);
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
