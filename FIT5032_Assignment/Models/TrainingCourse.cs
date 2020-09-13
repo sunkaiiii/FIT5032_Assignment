@@ -21,6 +21,7 @@ namespace FIT5032_Assignment.Models
             this.TrainingCourseTimetables = new HashSet<TrainingCourseTimetable>();
             this.UserSkills = new HashSet<UserSkills>();
             this.CourseWishLists = new HashSet<CourseWishList>();
+            this.CourseBookings = new HashSet<CourseBooking>();
         }
     
         public int Id { get; set; }
@@ -32,6 +33,7 @@ namespace FIT5032_Assignment.Models
         public short Rate { get; set; }
         public string AspNetUserId { get; set; }
         public Nullable<int> PreRequestId { get; set; }
+        public Nullable<System.DateTime> PublishDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrainingCourseTimetable> TrainingCourseTimetables { get; set; }
@@ -40,5 +42,7 @@ namespace FIT5032_Assignment.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseWishList> CourseWishLists { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseBooking> CourseBookings { get; set; }
     }
 }

@@ -179,6 +179,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrainingCoursesController.cs" />
+    <Compile Include="Controllers\UserHomeController.cs" />
+    <Compile Include="Extesnsion\MvcHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +235,7 @@
     <Compile Include="Models\TrainningCourseCoach.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserHomeViewModel.cs" />
     <Compile Include="Models\UserSkills.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
@@ -323,6 +326,7 @@
     <Content Include="Views\TrainingCourses\Details.cshtml" />
     <Content Include="Views\TrainingCourses\Edit.cshtml" />
     <Content Include="Views\TrainingCourses\Index.cshtml" />
+    <Content Include="Views\UserHome\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

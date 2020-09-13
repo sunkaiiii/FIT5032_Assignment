@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.TrainningCourseCoach" Width="2.375" PointX="11.875" PointY="4.625" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableTrainningCourseCoach" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.CourseBooking" Width="1.5" PointX="10.375" PointY="1.25" />
-        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseTimetableCourseBooking" />
         <EntityTypeShape EntityType="FIT5032_Assignment_Model.UserSkills" Width="1.5" PointX="3.125" PointY="2" />
         <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseUserSkills" ManuallyRouted="false" >
         </AssociationConnector>
@@ -33,6 +32,7 @@
         <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserTrainingCourse" />
         <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserUserSkills" />
         <AssociationConnector Association="FIT5032_Assignment_Model.AspNetUserTrainningCourseCoach" />
+        <AssociationConnector Association="FIT5032_Assignment_Model.TrainingCourseCourseBooking" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

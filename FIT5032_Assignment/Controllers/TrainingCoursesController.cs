@@ -45,6 +45,7 @@ namespace FIT5032_Assignment.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Coach")]
         // POST: TrainingCourses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -63,6 +64,7 @@ namespace FIT5032_Assignment.Controllers
             return View(trainingCourse);
         }
 
+        [Authorize(Roles = "Coach")]
         // GET: TrainingCourses/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -79,6 +81,7 @@ namespace FIT5032_Assignment.Controllers
             return View(trainingCourse);
         }
 
+        [Authorize(Roles = "Coach")]
         // POST: TrainingCourses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -96,6 +99,7 @@ namespace FIT5032_Assignment.Controllers
             return View(trainingCourse);
         }
 
+        [Authorize(Roles = "Coach")]
         // GET: TrainingCourses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -111,6 +115,7 @@ namespace FIT5032_Assignment.Controllers
             return View(trainingCourse);
         }
 
+        [Authorize(Roles = "Coach")]
         // POST: TrainingCourses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

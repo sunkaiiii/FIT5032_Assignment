@@ -1,0 +1,27 @@
+﻿@model FIT5032_Assignment.Models.UserHomeViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-lg-7">
+        <h2>New Classes</h2>
+        <div class="row">
+            @foreach (var course in Model.TrainingCourses)
+            {
+                <div class="col-md-3">
+                    <h4>@course.CourseName</h4>
+                    <h4>@course.CourseHeldLocation</h4>
+                    <h4>@course.CourseDescribtion</h4>
+                    <h4>@course.CourseCapacity</h4>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-5">
+        <h2>My Timetable</h2>
+    </div>
+</div>

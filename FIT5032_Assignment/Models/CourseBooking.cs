@@ -15,12 +15,12 @@ namespace FIT5032_Assignment.Models
     public partial class CourseBooking
     {
         public int Id { get; set; }
-        public int TrainingCourseTimetableId { get; set; }
         public string Feedback { get; set; }
         public System.DateTime BookingTime { get; set; }
         public string AspNetUserId { get; set; }
+        public Nullable<int> TrainingCourseId { get; set; }
     
-        public virtual TrainingCourseTimetable TrainingCourseTimetable { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual TrainingCourse TrainingCourse { get; set; }
     }
 }

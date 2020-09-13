@@ -24,7 +24,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Course","Index", "TrainingCourses")</li>
+                    @if (User.IsInRole("Coach"))
+                    {
+                        <li>@Html.ActionLink("My Class", "Index", "TrainingCourses")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

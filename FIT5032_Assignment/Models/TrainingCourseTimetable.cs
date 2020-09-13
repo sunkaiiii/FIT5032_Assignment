@@ -18,7 +18,6 @@ namespace FIT5032_Assignment.Models
         public TrainingCourseTimetable()
         {
             this.TrainningCourseCoaches = new HashSet<TrainningCourseCoach>();
-            this.CourseBookings = new HashSet<CourseBooking>();
         }
     
         public int Id { get; set; }
@@ -30,7 +29,5 @@ namespace FIT5032_Assignment.Models
         public virtual TrainingCourse CourseId { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrainningCourseCoach> TrainningCourseCoaches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseBooking> CourseBookings { get; set; }
     }
 }

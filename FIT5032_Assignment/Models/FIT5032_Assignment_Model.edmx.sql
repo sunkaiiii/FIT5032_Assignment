@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/13/2020 15:23:44
+-- Date Created: 09/13/2020 17:38:48
 -- Generated from EDMX file: D:\Documents\GitHub\FIT5032_Assignment\FIT5032_Assignment\Models\FIT5032_Assignment_Model.edmx
 -- --------------------------------------------------
 
@@ -118,7 +118,8 @@ CREATE TABLE [dbo].[TrainingCourses] (
     [IsOver] bit  NOT NULL,
     [Rate] smallint  NOT NULL,
     [AspNetUserId] nvarchar(128)  NOT NULL,
-    [PreRequestId] int  NULL
+    [PreRequestId] int  NULL,
+    [PublishDate] datetime  NULL
 );
 GO
 
@@ -143,10 +144,10 @@ GO
 -- Creating table 'CourseBookings'
 CREATE TABLE [dbo].[CourseBookings] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [TrainingCourseTimetableId] int  NOT NULL,
     [Feedback] nvarchar(max)  NULL,
     [BookingTime] datetime  NOT NULL,
-    [AspNetUserId] nvarchar(128)  NOT NULL
+    [AspNetUserId] nvarchar(128)  NOT NULL,
+    [TrainingCourseId] int  NULL
 );
 GO
 
@@ -337,21 +338,6 @@ ON [dbo].[TrainningCourseCoaches]
     ([TrainingCourseTimetableId]);
 GO
 
--- Creating foreign key on [TrainingCourseTimetableId] in table 'CourseBookings'
-ALTER TABLE [dbo].[CourseBookings]
-ADD CONSTRAINT [FK_TrainingCourseTimetableCourseBooking]
-    FOREIGN KEY ([TrainingCourseTimetableId])
-    REFERENCES [dbo].[TrainingCourseTimetables]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrainingCourseTimetableCourseBooking'
-CREATE INDEX [IX_FK_TrainingCourseTimetableCourseBooking]
-ON [dbo].[CourseBookings]
-    ([TrainingCourseTimetableId]);
-GO
-
 -- Creating foreign key on [TrainingCourseId] in table 'UserSkills'
 ALTER TABLE [dbo].[UserSkills]
 ADD CONSTRAINT [FK_TrainingCourseUserSkills]
@@ -530,6 +516,21 @@ GO
 CREATE INDEX [IX_FK_AspNetUserTrainningCourseCoach]
 ON [dbo].[TrainningCourseCoaches]
     ([AspNetUserId]);
+GO
+
+-- Creating foreign key on [TrainingCourseId] in table 'CourseBookings'
+ALTER TABLE [dbo].[CourseBookings]
+ADD CONSTRAINT [FK_TrainingCourseCourseBooking]
+    FOREIGN KEY ([TrainingCourseId])
+    REFERENCES [dbo].[TrainingCourses]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrainingCourseCourseBooking'
+CREATE INDEX [IX_FK_TrainingCourseCourseBooking]
+ON [dbo].[CourseBookings]
+    ([TrainingCourseId]);
 GO
 
 -- --------------------------------------------------
