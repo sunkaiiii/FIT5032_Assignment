@@ -176,9 +176,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CoachHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrainingCoursesController.cs" />
+    <Compile Include="Controllers\TrainingCourseTimetablesController.cs" />
     <Compile Include="Controllers\UserHomeController.cs" />
     <Compile Include="Extesnsion\MvcHelper.cs" />
     <Compile Include="Global.asax.cs">
@@ -200,9 +203,11 @@
     <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CoachHomeViewModel.cs" />
     <Compile Include="Models\CourseBooking.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseBookingViewModel.cs" />
     <Compile Include="Models\CourseWishList.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
@@ -226,6 +231,7 @@
     <Compile Include="Models\SubScribe.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TimetableViewModel.cs" />
     <Compile Include="Models\TrainingCourse.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
@@ -327,6 +333,15 @@
     <Content Include="Views\TrainingCourses\Edit.cshtml" />
     <Content Include="Views\TrainingCourses\Index.cshtml" />
     <Content Include="Views\UserHome\Index.cshtml" />
+    <Content Include="Views\CoachHome\Index.cshtml" />
+    <Content Include="Views\TrainingCourseTimetables\Create.cshtml" />
+    <Content Include="Views\TrainingCourseTimetables\Delete.cshtml" />
+    <Content Include="Views\TrainingCourseTimetables\Details.cshtml" />
+    <Content Include="Views\TrainingCourseTimetables\Edit.cshtml" />
+    <Content Include="Views\TrainingCourseTimetables\Index.cshtml" />
+    <Content Include="Views\TrainingCourseTimetables\FindByCourseId.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Booking\Booking.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

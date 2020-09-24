@@ -33,9 +33,9 @@
     <div class="form-group">
         @Html.LabelFor(m=>m.RoleId, new { @class = "col-md-2 control-label" })
         <div class="form-group">
-            @Html.RadioButtonFor(model => model.RoleId, 1, new { id = "User" })
+            @Html.RadioButtonFor(model => model.RoleId, "User")
             @Html.Label("User", "User")
-            @Html.RadioButtonFor(model => model.RoleId, 2, new { id = "Coach" })
+            @Html.RadioButtonFor(model => model.RoleId, "Coach")
             @Html.Label("Coach", "Coach")
         </div>
 

@@ -1,0 +1,17 @@
+﻿@model FIT5032_Assignment.Models.CoachHomeViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    @foreach(var timetable in Model.Timetable)
+    {
+        <div class="col-md-6">
+            <li>@timetable.CourseId.CourseName</li>
+            <li>@timetable.CourseStartTime.ToString()</li>
+        </div>
+    }
+</div>

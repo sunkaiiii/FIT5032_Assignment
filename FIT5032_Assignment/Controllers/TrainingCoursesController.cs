@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_Assignment.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032_Assignment.Controllers
 {
@@ -18,8 +19,9 @@ namespace FIT5032_Assignment.Controllers
         // GET: TrainingCourses
         public ActionResult Index()
         {
-            var trainingCourses = db.TrainingCourses.Include(t => t.AspNetUser);
-            return View(trainingCourses.ToList());
+            var userId = User.Identity.GetUserId();
+            var trainingCourses = db.TrainingCourses.Where(course => course.AspNetUserId == userId).ToList();
+            return View(trainingCourses);
         }
 
         // GET: TrainingCourses/Details/5

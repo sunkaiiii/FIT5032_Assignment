@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace FIT5032_Assignment.Controllers
 {
+    [Authorize(Roles = "User")]
     public class UserHomeController : Controller
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();

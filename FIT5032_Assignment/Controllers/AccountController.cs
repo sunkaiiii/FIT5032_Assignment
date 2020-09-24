@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FIT5032_Assignment.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FIT5032_Assignment.Controllers
 {
@@ -169,21 +170,30 @@ namespace FIT5032_Assignment.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    string role;
-                    if(model.RoleId == "1")
+                    string role = model.RoleId;
+                    if (!RoleManager.RoleExists(role))
                     {
-                        role = "User";
-                    }
-                    else
-                    {
-                        role = "Coach";
+                        RoleManager.Create(new IdentityRole { Name = role });
                     }
                     await UserManager.AddToRoleAsync(user.Id, role);
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    string redirectController;
+                    switch (role)
+                    {
+                        case "Coach":
+                            redirectController = "CoachHome";
+                            break;
+                        case "User":
+                            redirectController = "UserHome";
+                            break;
+                        default:
+                            redirectController = "UserHome";
+                            break;
+                    }
+                    return RedirectToAction("Index", redirectController);
                 }
                 AddErrors(result);
             }

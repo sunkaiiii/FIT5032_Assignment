@@ -1,0 +1,44 @@
+﻿@model FIT5032_Assignment.Models.TimetableViewModel
+@{
+    ViewBag.Title = "FindByCourseId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IEnumerable<FIT5032_Assignment.Models.TrainingCourseTimetable> timetable = Model.Timetables;
+}
+
+<h2>My Couse Timetable</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+           Name
+        </th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            End Time
+        </th>
+    </tr>
+
+    @foreach(var item in timetable)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem=>item.CourseId.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.CourseStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.CourseEndTime)
+            </td>
+        </tr>
+    }
+</table>
+
+
+
