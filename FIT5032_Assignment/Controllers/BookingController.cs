@@ -83,5 +83,14 @@ namespace FIT5032_Assignment.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

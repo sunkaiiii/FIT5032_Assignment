@@ -8,10 +8,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>TrainingCourse</h4>
         <hr />
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CourseHeldLocation, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseHeldLocation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CourseHeldLocation, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.CourseHeldLocation, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,7 +69,35 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@System.Configuration.ConfigurationManager.AppSettings["GoogleApiKey"]&libraries=places"></script>
+<script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', function () {
+        var options = {};
+        var input = document.getElementById("CourseHeldLocation");
+        var autoComplete = new google.maps.places.Autocomplete(input, options);
+        autoComplete.addListener("place_changed", () => {
+            const place = autoComplete.getPlace();
+            let address = "";
+
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] &&
+                        place.address_components[0].short_name) ||
+                    "",
+                    (place.address_components[1] &&
+                        place.address_components[1].short_name) ||
+                    "",
+                    (place.address_components[2] &&
+                        place.address_components[2].short_name) ||
+                    "",
+                ].join(" ");
+            }
+            input.textContent = address;
+        })
+    });
+</script>
+
+

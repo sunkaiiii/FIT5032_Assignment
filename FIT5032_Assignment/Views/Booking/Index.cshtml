@@ -19,9 +19,6 @@
             @Html.DisplayNameFor(model => bookings.FirstOrDefault().BookingTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => bookings.FirstOrDefault().TrainingCourse.IsOver)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => bookings.FirstOrDefault().TrainingCourse.CourseHeldLocation)
         </th>
     </tr>
@@ -37,9 +34,6 @@
         </td>
         <td>
             @Html.DisplayFor(item => booking.BookingTime)
-        </td>
-        <td>
-            @Html.DisplayFor(item => booking.TrainingCourse.IsOver)
         </td>
         <td>
             @Html.DisplayFor(item => booking.TrainingCourse.CourseHeldLocation)

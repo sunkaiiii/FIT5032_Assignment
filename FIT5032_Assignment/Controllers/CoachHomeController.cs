@@ -1,4 +1,5 @@
 ﻿using FIT5032_Assignment.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,9 +17,10 @@ namespace FIT5032_Assignment.Controllers
         // GET: CoachHome
         public ActionResult Index()
         {
-            var timetables = db.TrainingCourses.Include(course => course.AspNetUser)
+            var userId = User.Identity.GetUserId();
+            var timetables = db.TrainingCourses.Where(course => course.AspNetUserId == userId)
                 .SelectMany(course => course.TrainingCourseTimetables)
-                .OrderByDescending(timetable=>timetable.CourseStartTime)
+                .OrderByDescending(timetable=> timetable.CourseStartTime)
                 .Take(pageElement)
                 .ToList();
             return View(new CoachHomeViewModel(timetables));

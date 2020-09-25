@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrainingCoursesController.cs" />
     <Compile Include="Controllers\TrainingCourseTimetablesController.cs" />
+    <Compile Include="Controllers\TrendController.cs" />
     <Compile Include="Controllers\UserHomeController.cs" />
     <Compile Include="Extesnsion\MvcHelper.cs" />
     <Compile Include="Global.asax.cs">
@@ -241,6 +242,7 @@
     <Compile Include="Models\TrainningCourseCoach.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TrendViewModel.cs" />
     <Compile Include="Models\UserHomeViewModel.cs" />
     <Compile Include="Models\UserSkills.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
@@ -345,7 +347,9 @@
     <Content Include="Views\Booking\Delete.cshtml" />
     <Content Include="Views\Booking\FInishedBooking.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Trend\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
