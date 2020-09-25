@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/13/2020 17:38:48
+-- Date Created: 09/25/2020 17:09:08
 -- Generated from EDMX file: D:\Documents\GitHub\FIT5032_Assignment\FIT5032_Assignment\Models\FIT5032_Assignment_Model.edmx
 -- --------------------------------------------------
 
@@ -22,9 +22,6 @@ IF OBJECT_ID(N'[dbo].[FK_TrainingCourseTrainingCourseTimetable]', 'F') IS NOT NU
 GO
 IF OBJECT_ID(N'[dbo].[FK_TrainingCourseTimetableTrainningCourseCoach]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TrainningCourseCoaches] DROP CONSTRAINT [FK_TrainingCourseTimetableTrainningCourseCoach];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TrainingCourseTimetableCourseBooking]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourseBookings] DROP CONSTRAINT [FK_TrainingCourseTimetableCourseBooking];
 GO
 IF OBJECT_ID(N'[dbo].[FK_TrainingCourseUserSkills]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserSkills] DROP CONSTRAINT [FK_TrainingCourseUserSkills];
@@ -61,6 +58,9 @@ IF OBJECT_ID(N'[dbo].[FK_AspNetUserUserSkills]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserTrainningCourseCoach]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TrainningCourseCoaches] DROP CONSTRAINT [FK_AspNetUserTrainningCourseCoach];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TrainingCourseCourseBooking]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourseBookings] DROP CONSTRAINT [FK_TrainingCourseCourseBooking];
 GO
 
 -- --------------------------------------------------
@@ -147,7 +147,9 @@ CREATE TABLE [dbo].[CourseBookings] (
     [Feedback] nvarchar(max)  NULL,
     [BookingTime] datetime  NOT NULL,
     [AspNetUserId] nvarchar(128)  NOT NULL,
-    [TrainingCourseId] int  NULL
+    [TrainingCourseId] int  NULL,
+    [IsRated] bit  NOT NULL,
+    [RatingScore] smallint  NOT NULL
 );
 GO
 

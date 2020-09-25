@@ -342,6 +342,8 @@
     <Content Include="Views\TrainingCourseTimetables\FindByCourseId.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\Booking.cshtml" />
+    <Content Include="Views\Booking\Delete.cshtml" />
+    <Content Include="Views\Booking\FInishedBooking.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

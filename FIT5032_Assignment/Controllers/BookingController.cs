@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,9 +18,16 @@ namespace FIT5032_Assignment.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-            var bookingList = db.CourseBookings.Where(booking => booking.AspNetUserId == userId).ToList();
+            var bookingList = db.CourseBookings.Where(booking => booking.AspNetUserId == userId && !booking.TrainingCourse.IsOver).ToList();
             var viewModel = new CourseBookingViewModel(bookingList);
             return View(viewModel);
+        }
+
+        public ActionResult FinishedBooking()
+        {
+            var userId = User.Identity.GetUserId();
+            var bookingList = db.CourseBookings.Where(booking => booking.AspNetUserId == userId && booking.TrainingCourse.IsOver).ToList();
+            return View(bookingList);
         }
 
         public void Booking(int id)
@@ -37,6 +45,10 @@ namespace FIT5032_Assignment.Controllers
                 Response.Write("<script>alert('course id is invalid'); history.go(-1);</script>");
                 return;
             }
+            if(coures.IsOver)
+            {
+                Response.Write("<script>alert('The course is over, you cannot book this course.'); history.go(-1);</script>");
+            }
             var bookingModel = new CourseBooking();
             bookingModel.TrainingCourseId = id;
             bookingModel.AspNetUserId = userId;
@@ -45,6 +57,31 @@ namespace FIT5032_Assignment.Controllers
             db.SaveChanges();
             Response.Write("<script>alert('adding successfully'); history.go(-1);</script>");
             return;
+        }
+
+        public ActionResult Delete (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var booking = db.CourseBookings.Find(id);
+            if(booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CancelConfirmed(int id)
+        {
+            var booking = db.CourseBookings.Find(id);
+            db.CourseBookings.Remove(booking);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

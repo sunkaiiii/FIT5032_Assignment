@@ -19,6 +19,8 @@ namespace FIT5032_Assignment.Models
         public System.DateTime BookingTime { get; set; }
         public string AspNetUserId { get; set; }
         public Nullable<int> TrainingCourseId { get; set; }
+        public bool IsRated { get; set; }
+        public short RatingScore { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual TrainingCourse TrainingCourse { get; set; }

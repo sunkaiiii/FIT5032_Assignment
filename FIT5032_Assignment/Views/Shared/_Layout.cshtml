@@ -24,12 +24,13 @@
                     @if (User.IsInRole("User"))
                     {
                         <li>@Html.ActionLink("Home", "Index", "UserHome")</li>
+                        <li>@Html.ActionLink("My Booking", "Index", "Booking")</li>
                     }
                     else if (User.IsInRole("Coach"))
                     {
                         <li>@Html.ActionLink("Home", "Index", "CoachHome")</li>
                     }
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.IsInRole("Coach"))
                     {
