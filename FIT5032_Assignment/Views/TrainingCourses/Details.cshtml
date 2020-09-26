@@ -6,6 +6,15 @@
 }
 
 <h2>Details</h2>
+<head>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px; /* The height is 400 pixels */
+            width: 100%; /* The width is the width of the web page */
+        }
+    </style>
+</head>
 
 <div>
     <h4>TrainingCourse</h4>
@@ -68,16 +77,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            Coach Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
+            @Html.DisplayFor(model => model.AspNetUser.FirstName) @Html.DisplayFor(model => model.AspNetUser.LastName)
         </dd>
-
     </dl>
+
+    <div id="map"></div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.IsInRole("Coach"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
+    |
+    <a href="javascript:history.back()">Back</a>
 </p>
+<script>
+    function initMap() {
+      var uluru = {lat: @Model.LocationLatitude, lng: @Model.LocationLongitude};
+      var map = new google.maps.Map(
+          document.getElementById('map'), { zoom: 4, center: uluru });
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+        map.setZoom(17);
+    }
+    initMap();
+</script>
+
+<script defer
+        src="https://maps.googleapis.com/maps/api/js?key=@System.Configuration.ConfigurationManager.AppSettings["GoogleApiKey"]&callback=initMap">
+</script>

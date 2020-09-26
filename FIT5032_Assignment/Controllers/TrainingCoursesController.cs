@@ -15,6 +15,7 @@ namespace FIT5032_Assignment.Controllers
     public class TrainingCoursesController : Controller
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
+        private static readonly int PAGE_LIMIT = 20;
 
         // GET: TrainingCourses
         public ActionResult Index()
@@ -22,6 +23,13 @@ namespace FIT5032_Assignment.Controllers
             var userId = User.Identity.GetUserId();
             var trainingCourses = db.TrainingCourses.Where(course => course.AspNetUserId == userId).ToList();
             return View(trainingCourses);
+        }
+
+
+        public ActionResult AllCourses()
+        {
+            var trainingCourses = db.TrainingCourses.OrderByDescending(course => course.PublishDate).Take(PAGE_LIMIT).ToList();
+            return View("Index",trainingCourses);
         }
 
         // GET: TrainingCourses/Details/5
@@ -53,10 +61,12 @@ namespace FIT5032_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseName,CourseCapacity,CourseHeldLocation,CourseDescribtion,IsOver,Rate,AspNetUserId,PreRequestId")] TrainingCourse trainingCourse)
+        public ActionResult Create([Bind(Include = "Id,CourseName,CourseCapacity,CourseHeldLocation,CourseDescribtion,IsOver,Rate,PreRequestId,LocationLongitude,LocationLatitude")] TrainingCourse trainingCourse)
         {
             if (ModelState.IsValid)
             {
+                trainingCourse.PublishDate = DateTime.Now;
+                trainingCourse.AspNetUserId = User.Identity.GetUserId();
                 db.TrainingCourses.Add(trainingCourse);
                 db.SaveChanges();
                 return RedirectToAction("Index");

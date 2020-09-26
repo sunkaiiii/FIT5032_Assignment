@@ -39,6 +39,9 @@
             @Html.DisplayFor(item => booking.TrainingCourse.CourseHeldLocation)
         </td>
         <td>
+            @Html.ActionLink("Course Detail", "Details", "TrainingCourses", new { id = booking.TrainingCourseId }, new { })
+        </td>
+        <td>
             @Html.ActionLink("Cancel Booking","Delete",new { id = booking.Id})
         </td>
     </tr>

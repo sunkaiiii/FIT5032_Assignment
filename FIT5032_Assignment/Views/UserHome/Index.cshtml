@@ -17,7 +17,9 @@
                     <h4>@course.CourseHeldLocation</h4>
                     <h4>@course.CourseDescribtion</h4>
                     <h4>@course.CourseCapacity</h4>
-                    <a href="/Booking/Booking/@course.Id">Booking</a>
+                    @Html.ActionLink("Detail", "Details", "TrainingCourses", new { id = course.Id }, new { }) 
+                    |
+                    @Html.ActionLink("Booking Course", "Booking", "Booking", new { id = course.Id }, new { })
                 </div>
             }
         </div>

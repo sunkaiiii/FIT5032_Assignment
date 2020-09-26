@@ -13,6 +13,7 @@ namespace FIT5032_Assignment
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/charts").Include("~/Scripts/Chart*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -24,6 +25,7 @@ namespace FIT5032_Assignment
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Chart.min.css",
                       "~/Content/site.css"));
         }
     }

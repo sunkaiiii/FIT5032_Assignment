@@ -34,6 +34,8 @@ namespace FIT5032_Assignment.Models
         public string AspNetUserId { get; set; }
         public Nullable<int> PreRequestId { get; set; }
         public Nullable<System.DateTime> PublishDate { get; set; }
+        public Nullable<double> LocationLongitude { get; set; }
+        public Nullable<double> LocationLatitude { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrainingCourseTimetable> TrainingCourseTimetables { get; set; }

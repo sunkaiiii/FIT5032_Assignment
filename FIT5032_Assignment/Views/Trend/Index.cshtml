@@ -1,0 +1,64 @@
+﻿@model FIT5032_Assignment.Models.TrendViewModel
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var MostPopularCourses = Model.MostPopular.ToList();
+    var TopRatingCourses = Model.TopRatingCourse;
+}
+
+<h2>Trend</h2>
+
+<div>
+    <div class="col-md-8">
+        <h3>The most popular courses</h3>
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="col-md-3">
+        <h3>Top rating courses</h3>
+        <table class="table">
+            @foreach(var course in TopRatingCourses)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => course.CourseName);</td>
+                    <td>@Html.DisplayFor(model => course.Rate);</td>
+                    <td>
+                        @Html.ActionLink("Detail", "Details", "TrainingCourses",new { id = course.Id },new { });
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/charts");
+<script type="text/javascript">
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var modelData = @Html.Raw(Json.Encode(MostPopularCourses));
+    console.log(modelData);
+    var data = []
+    var labels = []
+    modelData.forEach(course => {
+        data.push(course["Count"]);
+        labels.push(course["CourseName"]);
+    })
+    console.log(labels);
+    console.log(data);
+        var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+        labels: labels,
+            datasets: [{
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: data
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>

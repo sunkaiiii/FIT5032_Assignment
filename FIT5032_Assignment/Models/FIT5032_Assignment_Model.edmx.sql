@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/25/2020 17:09:08
+-- Date Created: 09/26/2020 20:34:37
 -- Generated from EDMX file: D:\Documents\GitHub\FIT5032_Assignment\FIT5032_Assignment\Models\FIT5032_Assignment_Model.edmx
 -- --------------------------------------------------
 
@@ -119,7 +119,9 @@ CREATE TABLE [dbo].[TrainingCourses] (
     [Rate] smallint  NOT NULL,
     [AspNetUserId] nvarchar(128)  NOT NULL,
     [PreRequestId] int  NULL,
-    [PublishDate] datetime  NULL
+    [PublishDate] datetime  NULL,
+    [LocationLongitude] float  NULL,
+    [LocationLatitude] float  NULL
 );
 GO
 

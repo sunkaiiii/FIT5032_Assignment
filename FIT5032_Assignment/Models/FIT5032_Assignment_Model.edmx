@@ -93,6 +93,8 @@
     <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="PreRequestId" Type="int" Nullable="true" />
     <Property Name="PublishDate" Type="datetime" Nullable="true" />
+    <Property Name="LocationLongitude" Type="float" Nullable="true" />
+    <Property Name="LocationLatitude" Type="float" Nullable="true" />
   </EntityType>
   <EntityType Name="TrainingCourseTimetables">
     <Key>
@@ -504,6 +506,8 @@
           <Property Name="PreRequestId" Type="Int32" Nullable="true" />
           <Property Name="PublishDate" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="CourseBookings" Relationship="FIT5032_Assignment_Model.TrainingCourseCourseBooking" FromRole="TrainingCourse" ToRole="CourseBooking" />
+          <Property Name="LocationLongitude" Type="Double" Nullable="true" />
+          <Property Name="LocationLatitude" Type="Double" Nullable="true" />
         </EntityType>
         <EntityType Name="TrainingCourseTimetable">
           <Key>
@@ -863,6 +867,8 @@
           <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
           <ScalarProperty Name="PreRequestId" ColumnName="PreRequestId" />
           <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="LocationLongitude" ColumnName="LocationLongitude" />
+          <ScalarProperty Name="LocationLatitude" ColumnName="LocationLatitude" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

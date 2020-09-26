@@ -18,14 +18,14 @@ namespace FIT5032_Assignment.Controllers
             var topHotCourse = db.CourseBookings
                 .GroupBy(booking => booking.TrainingCourse, booking => booking, (key, b) => new { CourseId = key, BookingNum = b.Count() })
                 .OrderByDescending(bookingGroup => bookingGroup.BookingNum)
-                .Select(group => new TrendViewModel.TrendBooking { Course = group.CourseId, Count = group.BookingNum })
+                .Select(group => new TrendViewModel.TrendBooking { CourseId = group.CourseId.Id, CourseName = group.CourseId.CourseName, Count = group.BookingNum })
                 .Take(TREND_PAGE_RESULT_LIMIT)
                 .ToList();
             var topRateCourse = db
                 .TrainingCourses.OrderByDescending(course => course.Rate)
                 .Take(TREND_PAGE_RESULT_LIMIT)
                 .ToList();
-            return View();
+            return View(new TrendViewModel(topHotCourse,topRateCourse));
         }
 
         protected override void Dispose(bool disposing)
