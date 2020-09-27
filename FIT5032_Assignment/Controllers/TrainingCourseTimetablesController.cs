@@ -22,6 +22,7 @@ namespace FIT5032_Assignment.Controllers
             return View(trainingCourseTimetables.ToList());
         }
 
+
         // GET: TrainingCourseTimetables/Details/5
         public ActionResult Details(int? id)
         {

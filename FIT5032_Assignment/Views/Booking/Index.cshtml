@@ -25,25 +25,28 @@
 
     @foreach (var booking in bookings)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(item => booking.TrainingCourse.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.FirstName)  @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(item => booking.BookingTime)
-        </td>
-        <td>
-            @Html.DisplayFor(item => booking.TrainingCourse.CourseHeldLocation)
-        </td>
-        <td>
-            @Html.ActionLink("Course Detail", "Details", "TrainingCourses", new { id = booking.TrainingCourseId }, new { })
-        </td>
-        <td>
-            @Html.ActionLink("Cancel Booking","Delete",new { id = booking.Id})
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(item => booking.TrainingCourse.CourseName)
+    </td>
+    <td>
+        @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.FirstName)  @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(item => booking.BookingTime)
+    </td>
+    <td>
+        @Html.DisplayFor(item => booking.TrainingCourse.CourseHeldLocation)
+    </td>
+    <td>
+        @Html.ActionLink("Course Detail", "Details", "TrainingCourses", new { id = booking.TrainingCourseId }, new { })
+    </td>
+    <td>
+        @Html.ActionLink("Course Timetable", "FindByCourseId", "TrainingCourseTimetables", new { id = booking.TrainingCourseId }, new { })
+    </td>
+    <td>
+        @Html.ActionLink("Cancel Booking", "Delete", new { id = booking.Id })
+    </td>
+</tr>
     }
 </table>

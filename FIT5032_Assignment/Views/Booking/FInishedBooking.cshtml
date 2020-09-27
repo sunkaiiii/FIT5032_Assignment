@@ -45,15 +45,15 @@
             <td>
                 @Html.DisplayFor(item => booking.Feedback)
             </td>
-            @if (!booking.IsRated)
-            {
-                @Html.ActionLink("Edit Rating", "EditRating", new { id = booking.Id })
-            }
-            else
-            {
-                @Html.ActionLink("Rating Course", "Rating", new { id = booking.Id })
-            }
             <td>
+                @if (!booking.IsRated)
+                {
+                    @Html.ActionLink("Edit Rating", "Rating", new { id = booking.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Rating Course", "RatingDetail", new { id = booking.Id })
+                }
             </td>
         </tr>
     }

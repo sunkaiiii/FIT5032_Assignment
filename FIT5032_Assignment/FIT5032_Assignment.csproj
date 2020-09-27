@@ -229,6 +229,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RatingViewModel.cs" />
     <Compile Include="Models\SubScribe.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
@@ -352,6 +353,7 @@
     <Content Include="Views\Booking\FInishedBooking.cshtml" />
     <Content Include="Views\Trend\Index.cshtml" />
     <Content Include="Views\TrainingCourses\AllCourses.cshtml" />
+    <Content Include="Views\Booking\Rating.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
