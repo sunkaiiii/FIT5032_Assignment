@@ -60,17 +60,22 @@ namespace FIT5032_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] TrainingCourseTimetable trainingCourseTimetable)
+        public ActionResult Create([Bind(Include = "CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] TimetableViewModel.AddTimetableModel newTimetable)
         {
             if (ModelState.IsValid)
             {
+                TrainingCourseTimetable trainingCourseTimetable = new TrainingCourseTimetable();
+                trainingCourseTimetable.CourseStartTime = newTimetable.CourseStartTime;
+                trainingCourseTimetable.CourseEndTime = newTimetable.CourseEndTime;
+                trainingCourseTimetable.TrainingCourseId = newTimetable.TrainingCourseId;
+                trainingCourseTimetable.IsLastOne = newTimetable.IsLastOne;
                 db.TrainingCourseTimetables.Add(trainingCourseTimetable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "CourseName", trainingCourseTimetable.TrainingCourseId);
-            return View(trainingCourseTimetable);
+            ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "CourseName", newTimetable.TrainingCourseId);
+            return View(newTimetable);
         }
 
         // GET: TrainingCourseTimetables/Edit/5

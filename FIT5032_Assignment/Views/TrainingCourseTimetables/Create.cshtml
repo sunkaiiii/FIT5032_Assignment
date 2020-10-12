@@ -1,4 +1,4 @@
-﻿@model FIT5032_Assignment.Models.TrainingCourseTimetable
+﻿@model FIT5032_Assignment.Models.TimetableViewModel.AddTimetableModel
 
 @{
     ViewBag.Title = "Create";
@@ -7,17 +7,17 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>TrainingCourseTimetable</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.CourseStartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10" data-provide="datepicker">
                 @Html.EditorFor(model => model.CourseStartTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CourseStartTime, "", new { @class = "text-danger" })
             </div>
@@ -26,8 +26,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CourseEndTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseEndTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CourseEndTime, "", new { @class = "text-danger" })
+                <div class="input-group date" id="endTimePicker">
+                    @Html.EditorFor(model => model.CourseEndTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CourseEndTime, "", new { @class = "text-danger" })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -60,3 +65,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#endTimePicker').datetimepicker();
+    });
+</script>

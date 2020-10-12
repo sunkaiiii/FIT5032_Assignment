@@ -61,10 +61,17 @@ namespace FIT5032_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseName,CourseCapacity,CourseHeldLocation,CourseDescribtion,IsOver,Rate,PreRequestId,LocationLongitude,LocationLatitude")] TrainingCourse trainingCourse)
+        public ActionResult Create([Bind(Include = "CourseName,CourseCapacity,CourseHeldLocation,CourseDescribtion,LocationLongitude,LocationLatitude")] CourseViewModel course)
         {
+            
             if (ModelState.IsValid)
             {
+                TrainingCourse trainingCourse = new TrainingCourse();
+                trainingCourse.CourseName = course.CourseName;
+                trainingCourse.CourseCapacity = course.CourseCapacity;
+                trainingCourse.CourseHeldLocation = course.CourseHeldLocation;
+                trainingCourse.LocationLatitude = course.LocationLatitude;
+                trainingCourse.LocationLongitude = course.LocationLongitude;
                 trainingCourse.PublishDate = DateTime.Now;
                 trainingCourse.AspNetUserId = User.Identity.GetUserId();
                 db.TrainingCourses.Add(trainingCourse);
@@ -72,8 +79,8 @@ namespace FIT5032_Assignment.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AspNetUserId = new SelectList(db.AspNetUsers, "Id", "Email", trainingCourse.AspNetUserId);
-            return View(trainingCourse);
+            ViewBag.AspNetUserId = new SelectList(db.AspNetUsers, "Id", "Email", User.Identity.GetUserId());
+            return View(course);
         }
 
         [Authorize(Roles = "Coach")]
