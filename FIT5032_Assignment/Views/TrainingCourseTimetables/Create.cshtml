@@ -15,26 +15,37 @@
         <h4>TrainingCourseTimetable</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseStartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10" data-provide="datepicker">
-                @Html.EditorFor(model => model.CourseStartTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CourseStartTime, "", new { @class = "text-danger" })
+        <div class="container">
+            <div>
+                <label>Course Duration</label>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseEndTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="input-group date" id="endTimePicker">
-                    @Html.EditorFor(model => model.CourseEndTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CourseEndTime, "", new { @class = "text-danger" })
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>From</label>
+                    <div class="input-group date" id="startPicker">
+                        @Html.EditorFor(model => model.CourseStartTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CourseStartTime, "", new { @class = "text-danger" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>To</label>
+                    <div class="input-group date" id="endTimePicker">
+                        @Html.EditorFor(model => model.CourseEndTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CourseEndTime, "", new { @class = "text-danger" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.TrainingCourseId, "TrainingCourseId", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -67,9 +78,17 @@
 </div>
 
 
-
-<script type="text/javascript">
-    $(function () {
-        $('#endTimePicker').datetimepicker();
-    });
+<script>
+    $(document).ready(function () {
+        $('#startPicker').datetimepicker();
+        $('#endTimePicker').datetimepicker({
+            useCurrent: false
+        });
+        $("#startPicker").on("dp.change", function (e) {
+            $('#endTimePicker').data("DateTimePicker").minDate(e.date);
+        });
+        $("#endTimePicker").on("dp.change", function (e) {
+            $('#startPicker').data("DateTimePicker").maxDate(e.date);
+        });
+    })
 </script>
