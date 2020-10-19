@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+
+@font-face {
+    font-family: 'Testing; font-style: normal;
+    font-weight: 400;
+    src: local('Testing'), url('/fonts/testing.woff') format('woff'), /* will be preloaded */
+    url('/fonts/testing.woff2') format('woff2'), url('/fonts/testing.ttf') format('truetype'), url('/fonts/testing.eot') format('embedded-opentype');
+}

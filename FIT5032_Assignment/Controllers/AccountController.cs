@@ -170,18 +170,13 @@ namespace FIT5032_Assignment.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    string role = model.RoleId;
-                    if (!RoleManager.RoleExists(role))
-                    {
-                        RoleManager.Create(new IdentityRole { Name = role });
-                    }
-                    await UserManager.AddToRoleAsync(user.Id, role);
+                    await AddRole(user.Id, model.RoleId);
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     string redirectController;
-                    switch (role)
+                    switch (model.RoleId)
                     {
                         case "Coach":
                             redirectController = "CoachHome";
@@ -397,7 +392,7 @@ namespace FIT5032_Assignment.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,FirstName = model.FirstName, LastName = model.LastName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -405,6 +400,7 @@ namespace FIT5032_Assignment.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await AddRole(user.Id, model.RoleId);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -471,6 +467,15 @@ namespace FIT5032_Assignment.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        private async Task<IdentityResult> AddRole(string userId,string role)
+        {
+            if (!RoleManager.RoleExists(role))
+            {
+                RoleManager.Create(new IdentityRole { Name = role });
+            }
+            return await UserManager.AddToRoleAsync(userId, role);
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
