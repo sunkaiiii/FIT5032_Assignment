@@ -1,11 +1,13 @@
 ﻿using FIT5032_Assignment.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,6 +17,13 @@ namespace FIT5032_Assignment.Controllers
     public class BookingController : Controller
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+        }
 
         // GET: Booking
         public ActionResult Index()
@@ -100,7 +109,7 @@ namespace FIT5032_Assignment.Controllers
             {
                 return HttpNotFound();
             }
-            return View(booking);
+            return View(new CancelBookingModel { Booking = booking }) ;
         }
 
         [HttpPost, ActionName("Delete")]
@@ -108,9 +117,15 @@ namespace FIT5032_Assignment.Controllers
         public ActionResult CancelConfirmed(int id)
         {
             var booking = db.CourseBookings.Find(id);
+            SendEmailToToach(User.Identity, booking);
             db.CourseBookings.Remove(booking);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private void SendEmailToToach(IIdentity identity, CourseBooking booking)
+        {
+            UserManager.SendEmail(booking.TrainingCourse.AspNetUserId,"Course Cancelation", "The user " + identity.Name + " has cancelled your course: "+booking.TrainingCourse.CourseName);
         }
 
         protected override void Dispose(bool disposing)

@@ -204,6 +204,7 @@
     <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CancelBookingModel.cs" />
     <Compile Include="Models\CoachHomeViewModel.cs" />
     <Compile Include="Models\CourseBooking.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
@@ -230,6 +231,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NearByCourseViewModel.cs" />
     <Compile Include="Models\RatingViewModel.cs" />
     <Compile Include="Models\SubScribe.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
@@ -453,6 +455,7 @@
     <Content Include="Views\Trend\Index.cshtml" />
     <Content Include="Views\TrainingCourses\AllCourses.cshtml" />
     <Content Include="Views\Booking\Rating.cshtml" />
+    <Content Include="Views\UserHome\NearByClasses.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -32,5 +32,16 @@ namespace FIT5032_Assignment.Controllers
             return View(new UserHomeViewModel(trainingCourses,timetable));
         }
 
+        public ActionResult NearByClasses()
+        {
+            var courses = db.TrainingCourses
+                .Where(course => !course.IsOver && db.CourseBookings.FirstOrDefault(booking => booking.TrainingCourseId == course.Id) == null)
+                .OrderByDescending(course => course.PublishDate)
+                .Skip((page - 1) * pageElement)
+                .Take(pageElement).ToList()
+                .Select(course=>new NearByCourseViewModel {LocationLongitude = course.LocationLongitude ?? 0,LocationLatitude = course.LocationLatitude ?? 0 });
+            return View(courses);
+        }
+
     }
 }

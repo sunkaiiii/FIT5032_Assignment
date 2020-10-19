@@ -1,7 +1,8 @@
-﻿@model FIT5032_Assignment.Models.CourseBooking
+﻿@model FIT5032_Assignment.Models.CancelBookingModel
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var BookingModel = Model.Booking;
 }
 
 <h2>Delete</h2>
@@ -13,22 +14,29 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TrainingCourse.CourseName)
+            @Html.DisplayNameFor(model => BookingModel.TrainingCourse.CourseName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.TrainingCourse.CourseName)
+            @Html.DisplayFor(model => BookingModel.TrainingCourse.CourseName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.BookingTime)
+            @Html.DisplayNameFor(model => BookingModel.BookingTime)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.BookingTime)
+            @Html.DisplayFor(model => BookingModel.BookingTime)
         </dd>
         <dt>
             Coach Name
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.TrainingCourse.AspNetUser.FirstName) @Html.DisplayFor(model => model.TrainingCourse.AspNetUser.LastName)
+            @Html.DisplayFor(model => BookingModel.TrainingCourse.AspNetUser.FirstName) @Html.DisplayFor(model => BookingModel.TrainingCourse.AspNetUser.LastName)
+        </dd>
+
+        <dd>
+            You can leave a comment for the reason of this cancelation
+        </dd>
+        <dd>
+            @Html.TextBoxFor(model=>model.Comment)
         </dd>
     </dl>
         @using (Html.BeginForm())

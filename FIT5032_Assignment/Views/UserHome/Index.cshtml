@@ -6,7 +6,11 @@
 <img src="~/Content/Images/gym.jpg" srcset="~/Content/Images/gym_640.jpg 640w,~/Content/Images/gym_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
 <div class="row">
     <div class="col-lg-7">
-        <h2>New Classes</h2>
+        <div class="row">
+                <h2>New Classes</h2>
+                <h4>@Html.ActionLink("Nearby Classes","NearByClasses")</h4>
+        </div>
+
         <div class="row">
             @foreach (var course in Model.TrainingCourses)
             {
