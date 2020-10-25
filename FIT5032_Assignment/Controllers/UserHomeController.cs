@@ -35,7 +35,7 @@ namespace FIT5032_Assignment.Controllers
         public ActionResult NearByClasses()
         {
             var courses = db.TrainingCourses
-                .Where(course => !course.IsOver && db.CourseBookings.FirstOrDefault(booking => booking.TrainingCourseId == course.Id) == null)
+                .Where(course => !course.IsOver)
                 .OrderByDescending(course => course.PublishDate)
                 .Skip((page - 1) * pageElement)
                 .Take(pageElement).ToList()

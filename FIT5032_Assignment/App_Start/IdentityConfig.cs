@@ -27,11 +27,23 @@ namespace FIT5032_Assignment
         public async Task SendCoachNotificationEmail(IdentityMessage message, string from, string fromName,List<EmailAddress> tos, HttpPostedFileBase postFile)
         {
             var myMessage = new SendGridMessage();
-            myMessage.AddTos(tos);
-            myMessage.From = new EmailAddress(from, fromName);
+            //myMessage.From = new EmailAddress(from, fromName);
+            myMessage.From = new EmailAddress("ksun0017@qq.com", "Administrator");
             myMessage.Subject = message.Subject;
             myMessage.PlainTextContent = message.Body;
-            myMessage.HtmlContent = message.Body;
+            myMessage.HtmlContent = $@"
+            Hi
+            <br/>
+            {message.Body} <br/>
+             <br/>
+             <br/>
+            Best Regards, <br/>
+            Vibrant your mind <br/>
+            55 King Rd Autumn, VIC,9999 <br/>
+            012345678<br/>
+<img src=http://cdn.mcauto-images-production.sendgrid.net/7d8250131a038040/684a1fec-03be-4dd8-b957-446d7e2cf5c6/569x320.jpg  width='200'>";
+
+            myMessage.AddTos(tos);
             if (postFile != null)
             {
                 await myMessage.AddAttachmentAsync(postFile.FileName, postFile.InputStream);
@@ -50,7 +62,17 @@ namespace FIT5032_Assignment
             myMessage.From = new EmailAddress("ksun0017@qq.com", "Kai Sun");
             myMessage.Subject = message.Subject;
             myMessage.PlainTextContent = message.Body;
-            myMessage.HtmlContent = message.Body;
+            myMessage.HtmlContent = $@"
+            Hi
+            <br/>
+            {message.Body} <br/>
+             <br/>
+             <br/>
+            Best Regards, <br/>
+            Vibrant your mind <br/>
+            55 King Rd Autumn, VIC,9999 <br/>
+            012345678<br/>
+<img src=http://cdn.mcauto-images-production.sendgrid.net/7d8250131a038040/684a1fec-03be-4dd8-b957-446d7e2cf5c6/569x320.jpg  width='200'>";
             var apiKey = ConfigurationManager.AppSettings["SendGridApi"];
             var client = new SendGridClient(apiKey);
             var response = await client.SendEmailAsync(myMessage);

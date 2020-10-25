@@ -90,7 +90,7 @@ namespace FIT5032_Assignment.Controllers
             {
                 var emailService = UserManager.EmailService as EmailService;
                 var course = db.TrainingCourses.Find(emailViewModel.Id);
-                var bookings = db.CourseBookings.Where(booking => booking.TrainingCourseId == emailViewModel.Id).Select(booking => new EmailAddress { Email = booking.AspNetUser.Email, Name = booking.AspNetUser.UserName }).ToList();
+                var bookings = db.CourseBookings.Where(booking => booking.TrainingCourseId == emailViewModel.Id).Select(booking => new EmailAddress { Email = booking.AspNetUser.Email }).ToList();
                 await emailService.SendCoachNotificationEmail(new IdentityMessage { Subject = emailViewModel.Title, Body = emailViewModel.Content}, course.AspNetUser.Email, course.AspNetUser.UserName, bookings,postedFile);
             }
             return RedirectToAction("index");
