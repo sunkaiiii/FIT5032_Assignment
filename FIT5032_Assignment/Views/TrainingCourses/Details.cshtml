@@ -94,6 +94,7 @@
         @Html.Label(" |")
         @Html.ActionLink("Control Bookings", "ControlBookings", new { id = Model.Id })
         @Html.Label(" |")
+        @Html.ActionLink("Sending Email to Members","SendingEmail",new { id = Model.Id })
     }
 
     <a href="javascript:history.back()">Back</a>

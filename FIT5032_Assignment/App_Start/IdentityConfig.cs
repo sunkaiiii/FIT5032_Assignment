@@ -24,6 +24,25 @@ namespace FIT5032_Assignment
             await configSendGridasync(message);
         }
 
+        public async Task SendCoachNotificationEmail(IdentityMessage message, string from, string fromName,List<EmailAddress> tos, HttpPostedFileBase postFile)
+        {
+            var myMessage = new SendGridMessage();
+            myMessage.AddTos(tos);
+            myMessage.From = new EmailAddress(from, fromName);
+            myMessage.Subject = message.Subject;
+            myMessage.PlainTextContent = message.Body;
+            myMessage.HtmlContent = message.Body;
+            if (postFile != null)
+            {
+                await myMessage.AddAttachmentAsync(postFile.FileName, postFile.InputStream);
+            }
+            var apiKey = ConfigurationManager.AppSettings["SendGridApi"];
+            //var apiKey = "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";
+            var client = new SendGridClient(apiKey);
+            var response = await client.SendEmailAsync(myMessage);
+            Console.WriteLine(response.Body);
+        }
+
         private async Task configSendGridasync(IdentityMessage message)
         {
             var myMessage = new SendGridMessage();

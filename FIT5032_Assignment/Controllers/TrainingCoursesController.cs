@@ -4,10 +4,13 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_Assignment.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using SendGrid.Helpers.Mail;
 
 namespace FIT5032_Assignment.Controllers
 {
@@ -16,6 +19,14 @@ namespace FIT5032_Assignment.Controllers
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
         private static readonly int PAGE_LIMIT = 20;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+        }
 
         // GET: TrainingCourses
         public ActionResult Index()
@@ -61,6 +72,28 @@ namespace FIT5032_Assignment.Controllers
             }
             var bookings = db.CourseBookings.Where(booking => booking.TrainingCourseId == trainingCourse.Id);
             return View(new ControlBookingViewModel { TrainingCourse = trainingCourse, Bookings = bookings});
+        }
+
+        [Authorize(Roles = "Coach")]
+        public ActionResult SendingEmail(int id)
+        {
+            var course = db.TrainingCourses.Find(id);
+            return View(new CourseEmailViewModel { Id=course.Id });
+        }
+
+        [Authorize(Roles ="Coach")]
+        [HttpPost]
+        public async Task<ActionResult> SendingEmail([Bind(Include = "Id, Title, Content")]CourseEmailViewModel emailViewModel, HttpPostedFileBase postedFile)
+        {
+            ModelState.Clear();
+           if(ModelState.IsValid)
+            {
+                var emailService = UserManager.EmailService as EmailService;
+                var course = db.TrainingCourses.Find(emailViewModel.Id);
+                var bookings = db.CourseBookings.Where(booking => booking.TrainingCourseId == emailViewModel.Id).Select(booking => new EmailAddress { Email = booking.AspNetUser.Email, Name = booking.AspNetUser.UserName }).ToList();
+                await emailService.SendCoachNotificationEmail(new IdentityMessage { Subject = emailViewModel.Title, Body = emailViewModel.Content}, course.AspNetUser.Email, course.AspNetUser.UserName, bookings,postedFile);
+            }
+            return RedirectToAction("index");
         }
 
         [Authorize(Roles = "Coach")]

@@ -211,6 +211,7 @@
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseBookingViewModel.cs" />
+    <Compile Include="Models\CourseEmailViewModel.cs" />
     <Compile Include="Models\CourseViewModel.cs" />
     <Compile Include="Models\CourseWishList.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
@@ -458,8 +459,11 @@
     <Content Include="Views\Booking\Rating.cshtml" />
     <Content Include="Views\UserHome\NearByClasses.cshtml" />
     <Content Include="Views\TrainingCourses\ControlBookings.cshtml" />
+    <Content Include="Views\TrainingCourses\SendingEmail.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Uploads\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
