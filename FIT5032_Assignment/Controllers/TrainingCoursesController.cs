@@ -48,6 +48,22 @@ namespace FIT5032_Assignment.Controllers
         }
 
         [Authorize(Roles = "Coach")]
+        public ActionResult ControlBookings(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TrainingCourse trainingCourse = db.TrainingCourses.Find(id);
+            if (trainingCourse == null)
+            {
+                return HttpNotFound();
+            }
+            var bookings = db.CourseBookings.Where(booking => booking.TrainingCourseId == trainingCourse.Id);
+            return View(new ControlBookingViewModel { TrainingCourse = trainingCourse, Bookings = bookings});
+        }
+
+        [Authorize(Roles = "Coach")]
         // GET: TrainingCourses/Create
         public ActionResult Create()
         {

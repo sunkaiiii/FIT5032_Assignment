@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="Models\CancelBookingModel.cs" />
     <Compile Include="Models\CoachHomeViewModel.cs" />
+    <Compile Include="Models\ControlBookingViewModel.cs" />
     <Compile Include="Models\CourseBooking.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
@@ -456,6 +457,7 @@
     <Content Include="Views\TrainingCourses\AllCourses.cshtml" />
     <Content Include="Views\Booking\Rating.cshtml" />
     <Content Include="Views\UserHome\NearByClasses.cshtml" />
+    <Content Include="Views\TrainingCourses\ControlBookings.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

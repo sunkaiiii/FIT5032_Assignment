@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace FIT5032_Assignment.Controllers
 {
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "User, Coach")]
     public class BookingController : Controller
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
@@ -113,6 +113,7 @@ namespace FIT5032_Assignment.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
         public ActionResult CancelConfirmed(int id)
         {
@@ -121,6 +122,25 @@ namespace FIT5032_Assignment.Controllers
             db.CourseBookings.Remove(booking);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Coach")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CancelBookingByCoach(int id)
+        {
+
+            var booking = db.CourseBookings.Find(id);
+            int courseId = booking.TrainingCourseId ?? 0;
+            SendEmailToUser(User.Identity,booking);
+            db.CourseBookings.Remove(booking);
+            db.SaveChanges();
+            return RedirectToAction("ControlBookings", "TrainingCourses",new { id = courseId });
+        }
+
+        private void SendEmailToUser(IIdentity identity, CourseBooking booking)
+        {
+            UserManager.SendEmail(booking.AspNetUserId, "Course Cancelation", "You course " + booking.TrainingCourse.CourseName + "has cancelled by your coach " + booking.TrainingCourse.AspNetUser.UserName);
         }
 
         private void SendEmailToToach(IIdentity identity, CourseBooking booking)

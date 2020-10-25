@@ -1,0 +1,43 @@
+﻿@model FIT5032_Assignment.Models.ControlBookingViewModel
+@{
+    ViewBag.Title = "ControlBookings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var bookings = Model.Bookings;
+    var course = Model.TrainingCourse;
+}
+
+<h2>ControlBookings for @Html.DisplayFor(model => course.CourseName)</h2>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                User Name
+            </th>
+            <th>
+                Booking Time
+            </th>
+            <th></th>
+        </tr>
+        @foreach(var item in bookings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                </td>
+                <td>@Html.DisplayFor(modelItem=>item.BookingTime)</td>
+                <td>
+                    @using (Ajax.BeginForm("CancelBookingByCoach", "Booking",new { id = item.Id }, new AjaxOptions { HttpMethod = "POST" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Cancel Booking" class="btn btn-default" />
+                    </div>
+                    }
+                    
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

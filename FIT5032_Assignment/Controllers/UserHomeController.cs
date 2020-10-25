@@ -20,7 +20,7 @@ namespace FIT5032_Assignment.Controllers
         public ActionResult Index()
         {
             var trainingCourses = db.TrainingCourses
-                .Where(course => !course.IsOver && db.CourseBookings.FirstOrDefault(booking=>booking.TrainingCourseId == course.Id) == null)
+                .Where(course => !course.IsOver && db.CourseBookings.FirstOrDefault(booking=>booking.TrainingCourseId == course.Id && booking.AspNetUser.Email == User.Identity.Name) == null)
                 .OrderByDescending(course => course.PublishDate)
                 .Skip((page-1)*pageElement)
                 .Take(pageElement).ToList();
