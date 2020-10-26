@@ -41,7 +41,7 @@ namespace FIT5032_Assignment
             Vibrant your mind <br/>
             55 King Rd Autumn, VIC,9999 <br/>
             012345678<br/>
-<img src=http://cdn.mcauto-images-production.sendgrid.net/7d8250131a038040/684a1fec-03be-4dd8-b957-446d7e2cf5c6/569x320.jpg  width='200'>";
+            <img src=http://cdn.mcauto-images-production.sendgrid.net/7d8250131a038040/684a1fec-03be-4dd8-b957-446d7e2cf5c6/569x320.jpg  width='200'>";
 
             myMessage.AddTos(tos);
             if (postFile != null)

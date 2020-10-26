@@ -1,0 +1,42 @@
+﻿@model FIT5032_Assignment.Models.CourseBooking
+@{
+    ViewBag.Title = "RatingDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RatingDetail</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainingCourse.CourseName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrainingCourse.CourseName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookingTime)
+        </dd>
+        <dt>
+            User Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.FirstName) @Html.DisplayFor(model => model.AspNetUser.LastName) (@Html.DisplayFor(model => model.AspNetUser.Email))
+        </dd>
+        <dt>
+            Coach Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrainingCourse.AspNetUser.FirstName) @Html.DisplayFor(model => model.TrainingCourse.AspNetUser.LastName)  (@Html.DisplayFor(model => model.TrainingCourse.AspNetUser.Email))
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RatingScore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RatingScore)
+        </dd>
+    </dl>
+</div>

@@ -460,6 +460,7 @@
     <Content Include="Views\UserHome\NearByClasses.cshtml" />
     <Content Include="Views\TrainingCourses\ControlBookings.cshtml" />
     <Content Include="Views\TrainingCourses\SendingEmail.cshtml" />
+    <Content Include="Views\Booking\RatingDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

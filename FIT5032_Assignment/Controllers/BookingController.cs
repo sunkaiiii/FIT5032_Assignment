@@ -81,7 +81,7 @@ namespace FIT5032_Assignment.Controllers
         }
 
         [HttpPost]
-        public void Rating(RatingViewModel ratingViewModel)
+        public ActionResult Rating(RatingViewModel ratingViewModel)
         {
             var oldBooking = db.CourseBookings.Find(ratingViewModel.BookingId);
             oldBooking.RatingScore = ratingViewModel.RatingScore;
@@ -91,10 +91,20 @@ namespace FIT5032_Assignment.Controllers
             {
                 db.Entry(oldBooking).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges() ;
-                Response.Write("<script>alert('adding successfully'); history.go(-1); location.reload();</script>");
-                return;
+
+                var courseId = oldBooking.TrainingCourseId;
+                var rating = db.CourseBookings.Where(booking => booking.TrainingCourseId == courseId && booking.IsRated).Average(booking => booking.RatingScore);
+                var course = db.TrainingCourses.Find(courseId);
+                course.Rate = (short)rating;
+                db.SaveChanges();
             }
-            return;
+            return RedirectToAction("FinishedBooking");
+        }
+
+        public ActionResult RatingDetail(int id)
+        {
+            var booking = db.CourseBookings.Find(id);
+            return View(booking);
         }
 
         public ActionResult Delete (int? id)

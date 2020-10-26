@@ -48,11 +48,11 @@
             <td>
                 @if (!booking.IsRated)
                 {
-                    @Html.ActionLink("Edit Rating", "Rating", new { id = booking.Id })
+                    @Html.ActionLink("Rating Course", "Rating", new { id = booking.Id })
                 }
                 else
                 {
-                    @Html.ActionLink("Rating Course", "RatingDetail", new { id = booking.Id })
+                    @Html.ActionLink("Rating Detail", "RatingDetail", new { id = booking.Id })
                 }
             </td>
         </tr>
