@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using FIT5032_Assignment.Models;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032_Assignment.Controllers
 {
@@ -60,7 +61,7 @@ namespace FIT5032_Assignment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] int courseId, TimetableViewModel.AddTimetableModel newTimetable)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && CheckTimeCollision(courseId, newTimetable))
             {
                 TrainingCourseTimetable trainingCourseTimetable = new TrainingCourseTimetable();
                 trainingCourseTimetable.CourseStartTime = newTimetable.CourseStartTime;
@@ -71,7 +72,34 @@ namespace FIT5032_Assignment.Controllers
                 db.SaveChanges();
                 return RedirectToAction("FindByCourseId",new { id = courseId});
             }
+            ViewBag.courseId = courseId;
             return View(newTimetable);
+        }
+
+        private bool CheckTimeCollision(int courseId, TimetableViewModel.AddTimetableModel newTimetable)
+        {
+            var userId = User.Identity.GetUserId();
+            bool result = true;
+            result &= newTimetable.CourseStartTime < newTimetable.CourseEndTime;
+            result &= newTimetable.CourseStartTime > DateTime.Now;
+            //check the timetable collision
+            db.TrainingCourseTimetables
+                .Where(timetable => timetable.TrainingCourseId == courseId)
+                .ForEach(timetable=> {
+                    if (timetable.CourseStartTime < newTimetable.CourseStartTime)
+                    {
+                        result &= timetable.CourseEndTime < newTimetable.CourseStartTime;
+                    }
+                    else
+                    {
+                        result &= timetable.CourseStartTime > newTimetable.CourseEndTime;
+                    }
+                } );
+            if (!result)
+            {
+                ViewBag.TimeErrorMessage = "The chosen time duration has not mathched the constraints, please try again";
+            }
+            return result;
         }
 
         // GET: TrainingCourseTimetables/Edit/5
@@ -128,9 +156,10 @@ namespace FIT5032_Assignment.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TrainingCourseTimetable trainingCourseTimetable = db.TrainingCourseTimetables.Find(id);
+            int courseId = trainingCourseTimetable.TrainingCourseId;
             db.TrainingCourseTimetables.Remove(trainingCourseTimetable);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("FindByCourseId", new { id = courseId });
         }
 
         protected override void Dispose(bool disposing)
