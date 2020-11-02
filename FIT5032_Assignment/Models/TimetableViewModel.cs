@@ -10,10 +10,12 @@ namespace FIT5032_Assignment.Models
     public class TimetableViewModel
     {
         public IEnumerable<TrainingCourseTimetable> Timetables { get; }
+        public int CourseId { get; }
 
-        public TimetableViewModel(IEnumerable<TrainingCourseTimetable> timetables)
+        public TimetableViewModel(IEnumerable<TrainingCourseTimetable> timetables,int courseId)
         {
             Timetables = timetables;
+            CourseId = courseId;
         }
 
         public class AddTimetableModel
@@ -22,8 +24,6 @@ namespace FIT5032_Assignment.Models
             public DateTime CourseStartTime { get; set; }
             [Required]
             public DateTime CourseEndTime { get; set; }
-            [Required]
-            public int TrainingCourseId { get; set; }
             public bool IsLastOne { get; set; }
         }
     }

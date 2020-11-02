@@ -15,13 +15,6 @@ namespace FIT5032_Assignment.Controllers
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
 
-        // GET: TrainingCourseTimetables
-        public ActionResult Index()
-        {
-            var trainingCourseTimetables = db.TrainingCourseTimetables.Include(t => t.CourseId);
-            return View(trainingCourseTimetables.ToList());
-        }
-
 
         // GET: TrainingCourseTimetables/Details/5
         public ActionResult Details(int? id)
@@ -45,13 +38,18 @@ namespace FIT5032_Assignment.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var timetable = db.TrainingCourseTimetables.Where(t => t.TrainingCourseId == id).ToList();
-            return View(new TimetableViewModel(timetable));
+            return View(new TimetableViewModel(timetable, (int)id));
         }
 
         // GET: TrainingCourseTimetables/Create
-        public ActionResult Create()
+        public ActionResult Create(int? courseId)
         {
-            ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "CourseName");
+            var course = db.TrainingCourses.FirstOrDefault(c => c.Id == courseId);
+            if(course == null)
+            {
+                return RedirectToAction("FindByCourseId", new { id = courseId });
+            }
+            ViewBag.courseId = courseId;
             return View();
         }
 
@@ -60,21 +58,19 @@ namespace FIT5032_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] TimetableViewModel.AddTimetableModel newTimetable)
+        public ActionResult Create([Bind(Include = "CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] int courseId, TimetableViewModel.AddTimetableModel newTimetable)
         {
             if (ModelState.IsValid)
             {
                 TrainingCourseTimetable trainingCourseTimetable = new TrainingCourseTimetable();
                 trainingCourseTimetable.CourseStartTime = newTimetable.CourseStartTime;
                 trainingCourseTimetable.CourseEndTime = newTimetable.CourseEndTime;
-                trainingCourseTimetable.TrainingCourseId = newTimetable.TrainingCourseId;
+                trainingCourseTimetable.TrainingCourseId = courseId;
                 trainingCourseTimetable.IsLastOne = newTimetable.IsLastOne;
                 db.TrainingCourseTimetables.Add(trainingCourseTimetable);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("FindByCourseId",new { id = courseId});
             }
-
-            ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "CourseName", newTimetable.TrainingCourseId);
             return View(newTimetable);
         }
 
@@ -99,7 +95,7 @@ namespace FIT5032_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] TrainingCourseTimetable trainingCourseTimetable)
+        public ActionResult Edit([Bind(Include = "CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] TrainingCourseTimetable trainingCourseTimetable)
         {
             if (ModelState.IsValid)
             {
