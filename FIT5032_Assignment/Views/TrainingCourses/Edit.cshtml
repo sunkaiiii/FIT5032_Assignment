@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>TrainingCourse</h4>
         <hr />
@@ -39,14 +39,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CourseHeldLocation, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CourseHeldLocation, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseDescribtion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseDescribtion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CourseDescribtion, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -84,6 +76,15 @@
             </div>
         </div>
 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourseDescribtion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CourseDescribtion, new { htmlAttributes = new { @class = "form-control",  @id = "mytextarea" } })
+                @Html.ValidationMessageFor(model => model.CourseDescribtion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -98,4 +99,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        tinymce.init({
+            selector: "#mytextarea"
+        });
+    </script>
 }

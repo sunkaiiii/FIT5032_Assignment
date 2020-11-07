@@ -37,14 +37,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CourseDescribtion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CourseDescribtion)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.IsOver)
         </dt>
 
@@ -75,10 +67,19 @@
         <dd>
             @Html.DisplayFor(model => model.AspNetUser.Email)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseDescribtion)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.CourseDescribtion)
+        </dd>
+
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -87,3 +88,13 @@
         </div>
     }
 </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        tinymce.init({
+            selector: "#mytextarea"
+        });
+    </script>
+}

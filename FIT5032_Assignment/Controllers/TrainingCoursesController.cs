@@ -121,6 +121,7 @@ namespace FIT5032_Assignment.Controllers
                 trainingCourse.CourseHeldLocation = course.CourseHeldLocation;
                 trainingCourse.LocationLatitude = course.LocationLatitude;
                 trainingCourse.LocationLongitude = course.LocationLongitude;
+                trainingCourse.CourseDescribtion = course.CourseDescribtion;
                 trainingCourse.PublishDate = DateTime.Now;
                 trainingCourse.AspNetUserId = User.Identity.GetUserId();
                 db.TrainingCourses.Add(trainingCourse);

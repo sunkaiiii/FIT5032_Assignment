@@ -24,6 +24,7 @@ namespace FIT5032_Assignment.Models
         [Range(-180,180, ErrorMessage = "Longitude is out of range")]
         public double? LocationLongitude { get; set; }
 
+        [System.Web.Mvc.AllowHtml]
         public string CourseDescribtion { get; set; }
     }
 }
