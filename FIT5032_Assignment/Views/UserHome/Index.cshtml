@@ -3,26 +3,133 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<img src="~/Content/Images/gym.jpg" srcset="~/Content/Images/gym_640.jpg 640w,~/Content/Images/gym_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+@*The usage of a swiper, referenes on https://www.programmersought.com/article/65141443689/*@
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 500px;
+        margin: 60px auto;
+    }
+
+    .swiper-slide {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+    }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+    .swiper-pagination {
+        width: 100%;
+        height: 14px;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+    }
+</style>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="~/Content/Images/gym.jpg"  srcset="~/Content/Images/gym_640.jpg 640w,~/Content/Images/gym_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
+        </div>
+        <div class="swiper-slide">
+            <img src="~/Content/Images/socker.jpg" srcset="~/Content/Images/socker_640.jpg 640w,~/Content/Images/socker_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
+        </div>
+        <div class="swiper-slide">
+            <img src="~/Content/Images/swim.jpg" srcset="~/Content/Images/swim_640.jpg 640w,~/Content/Images/swim_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
+        </div>
+        <div class="swiper-slide">
+            <img src="~/Content/Images/cycling.jpg" srcset="~/Content/Images/cycling_640.jpg 640w,~/Content/Images/cycling_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+@*<img src="~/Content/Images/gym.jpg" srcset="~/Content/Images/gym_640.jpg 640w,~/Content/Images/gym_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">*@
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        loop: true,
+        paginationType: 'custom',
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+
+        }
+
+    });
+    Swiper.el.onmouseover = function () { //Mouse the pause on the carousel
+        swiper.autoplay.stop();
+    }
+    swiper.el.onmouseleave = function () {
+        swiper.autoplay.start();
+    }
+</script>
+<style>
+    div.card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 8px;
+    }
+
+    div.card-header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        font-size: 40px;
+    }
+
+    div.card-container {
+        padding: 10px;
+    }
+</style>
 <div class="row">
     <div class="col-lg-7">
         <div class="row">
-                <h2>New Classes</h2>
-                <h4>@Html.ActionLink("Nearby Classes","NearByClasses")</h4>
+            <h2>New Classes</h2>
+            <h4>@Html.ActionLink("Nearby Classes", "NearByClasses")</h4>
         </div>
 
         <div class="row">
             @foreach (var course in Model.TrainingCourses)
             {
-                <div class="col-md-3">
-                    <h4>@course.CourseName</h4>
-                    <h4>@course.CourseHeldLocation</h4>
-                    <h4>@course.CourseDescribtion</h4>
-                    <h4>@course.CourseCapacity</h4>
-                    @Html.ActionLink("Detail", "Details", "TrainingCourses", new { id = course.Id }, new { }) 
-                    |
-                    @Html.ActionLink("Booking Course", "Booking", "Booking", new { id = course.Id }, new { })
+                <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>@course.CourseName</h4>
+                            <h4>@course.CourseHeldLocation</h4>
+                            <h4>@course.CourseCapacity</h4>
+                        </div>
+                        <div class="card-container">
+                            <p>
+                                @Html.ActionLink("Detail", "Details", "TrainingCourses", new { id = course.Id }, new { })
+                            </p>
+                            <p>
+                                @Html.ActionLink("Booking Course", "Booking", "Booking", new { id = course.Id }, new { })
+                            </p>
+                        </div>
+                    </div>
                 </div>
+
             }
         </div>
     </div>
