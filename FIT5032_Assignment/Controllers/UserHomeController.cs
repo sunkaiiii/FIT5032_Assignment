@@ -1,5 +1,6 @@
 ﻿using FIT5032_Assignment.Models;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,15 +20,17 @@ namespace FIT5032_Assignment.Controllers
         readonly int pageElement = 10;
         public ActionResult Index()
         {
+            var id = User.Identity.GetUserId();
             var trainingCourses = db.TrainingCourses
                 .Where(course => !course.IsOver && db.CourseBookings.FirstOrDefault(booking=>booking.TrainingCourseId == course.Id && booking.AspNetUser.Email == User.Identity.Name) == null)
                 .OrderByDescending(course => course.PublishDate)
                 .Skip((page-1)*pageElement)
                 .Take(pageElement).ToList();
             var timetable = db.CourseBookings
-                .Include(booking => booking.AspNetUser)
+                .Where(booking => booking.AspNetUserId == id)
                 .Select(booking => booking.TrainingCourse)
                 .Select(course => course.TrainingCourseTimetables.OrderByDescending(t=>t.CourseStartTime).FirstOrDefault())
+                .Where(t=>t!=null && t.CourseStartTime > DateTime.Now)
                 .ToList();
             return View(new UserHomeViewModel(trainingCourses,timetable));
         }

@@ -135,5 +135,14 @@
     </div>
     <div class="col-md-5">
         <h2>My Timetable</h2>
+        @foreach (var timetable in Model.TrainingCourseTimetables)
+        {
+            <p>
+                @timetable.CourseId.CourseName
+            </p>
+            <p>
+                @timetable.CourseStartTime - @timetable.CourseEndTime
+            </p>
+        }
     </div>
 </div>

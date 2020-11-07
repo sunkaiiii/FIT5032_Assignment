@@ -435,6 +435,7 @@
     <Content Include="Content\Images\gym.jpg" />
     <Content Include="Content\Images\gym_320.jpg" />
     <Content Include="Content\Images\gym_640.jpg" />
+    <Content Include="Content\Images\home_page_background.jpg" />
     <Content Include="Content\Images\socker.jpg" />
     <Content Include="Content\Images\socker_320.jpg" />
     <Content Include="Content\Images\socker_640.jpg" />
@@ -795,7 +796,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -847,6 +847,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

@@ -1,31 +1,53 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@*the style is referenced on https://www.w3schools.com/howto/howto_css_hero_image.asp*@
+<style>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    .main_page {
+        /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Content//Images/home_page_background.jpg");
+        /* Set a specific height */
+        height: 800px;
+        width: 100%;
+        /* Position and center the image to scale nicely on all screens */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    /* Place text in the middle of the image */
+    .main_text {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
+    .button_text {
+        color: black;
+        background-color: azure;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        margin-top:12px;
+        margin-left:8px;
+        margin-right:8px;
+        box-shadow: 0px 0px 3px 3px #BBBBBBBB, 0px 0px 6px 6px #99999999;
+    }
+</style>
+<div class="main_page">
+    <div class="main_text">
+        <h1>Welcome to vibrant your mind!</h1>
+        <p>Sign up now</p>
+        <h1></h1>
+        @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "button_text" })
+        @Html.ActionLink("Sign in", "Login", "Account", null, new { @class = "button_text" })
     </div>
 </div>

@@ -10,6 +10,13 @@ namespace FIT5032_Assignment.Controllers
     {
         public ActionResult Index()
         {
+            if (User.IsInRole("User"))
+            {
+                return RedirectToAction("Index", "UserHome");
+            }else if(User.IsInRole("Coach"))
+            {
+                return RedirectToAction("Index", "CoachHome");
+            }
             return View();
         }
 
