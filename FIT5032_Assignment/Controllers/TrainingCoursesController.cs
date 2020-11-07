@@ -142,6 +142,10 @@ namespace FIT5032_Assignment.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TrainingCourse trainingCourse = db.TrainingCourses.Find(id);
+            if(trainingCourse.IsOver)
+            {
+                return RedirectToAction("index");
+            }
             if (trainingCourse == null)
             {
                 return HttpNotFound();
@@ -156,16 +160,36 @@ namespace FIT5032_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CourseName,CourseCapacity,CourseHeldLocation,CourseDescribtion,IsOver,Rate,AspNetUserId,PreRequestId")] TrainingCourse trainingCourse)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,CourseName,CourseCapacity,CourseHeldLocation,CourseDescribtion,IsOver,Rate,AspNetUserId,PreRequestId")] TrainingCourse trainingCourse)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(trainingCourse).State = EntityState.Modified;
                 db.SaveChanges();
+                if (trainingCourse.IsOver)
+                {
+                    await AddSkillForEveryUser(trainingCourse);
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.AspNetUserId = new SelectList(db.AspNetUsers, "Id", "Email", trainingCourse.AspNetUserId);
             return View(trainingCourse);
+        }
+
+        private async Task AddSkillForEveryUser(TrainingCourse course)
+        {
+            await db.CourseBookings.Where(booking => booking.TrainingCourseId == course.Id).ForEachAsync(booking =>
+            {
+                var userSkill = new UserSkills
+                {
+                    AspNetUserId = booking.AspNetUserId,
+                    TrainingCourseId = booking.TrainingCourse.Id,
+                    SkillReceivedDate = DateTime.Now
+                };
+                db.UserSkills.Add(userSkill);
+                
+            });
+            await db.SaveChangesAsync();
         }
 
         [Authorize(Roles = "Coach")]

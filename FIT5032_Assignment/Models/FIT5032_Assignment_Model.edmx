@@ -132,7 +132,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TrainingCourseId" Type="int" Nullable="false" />
-    <Property Name="SkillReceivedDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SkillReceivedDate" Type="datetime" Nullable="false" />
     <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
   <EntityType Name="CourseWishLists">
@@ -580,7 +580,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="TrainingCourse" Relationship="FIT5032_Assignment_Model.TrainingCourseUserSkills" FromRole="UserSkills" ToRole="TrainingCourse" />
           <Property Name="TrainingCourseId" Type="Int32" Nullable="false" />
-          <Property Name="SkillReceivedDate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SkillReceivedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="FIT5032_Assignment_Model.AspNetUserUserSkills" FromRole="UserSkills" ToRole="AspNetUser" />
           <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>

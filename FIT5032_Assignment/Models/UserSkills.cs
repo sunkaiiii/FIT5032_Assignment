@@ -16,7 +16,7 @@ namespace FIT5032_Assignment.Models
     {
         public int Id { get; set; }
         public int TrainingCourseId { get; set; }
-        public string SkillReceivedDate { get; set; }
+        public System.DateTime SkillReceivedDate { get; set; }
         public string AspNetUserId { get; set; }
     
         public virtual TrainingCourse TrainingCourse { get; set; }

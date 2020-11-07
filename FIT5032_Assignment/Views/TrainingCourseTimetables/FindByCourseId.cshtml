@@ -8,7 +8,11 @@
 <h2>My Couse Timetable</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { courseId = Model.CourseId })
+    @if (!Model.CourseId.IsOver)
+    {
+        @Html.ActionLink("Create New", "Create", new { courseId = Model.CourseId.Id })
+    }
+
 </p>
 
 

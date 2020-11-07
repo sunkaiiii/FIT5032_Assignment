@@ -34,12 +34,13 @@ namespace FIT5032_Assignment.Controllers
 
         public ActionResult FindByCourseId(int? id)
         {
-            if(id == null)
+            var course = db.TrainingCourses.FirstOrDefault(c => c.Id == id);
+            if(id == null || course == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var timetable = db.TrainingCourseTimetables.Where(t => t.TrainingCourseId == id).ToList();
-            return View(new TimetableViewModel(timetable, (int)id));
+            return View(new TimetableViewModel(timetable, course));
         }
 
         // GET: TrainingCourseTimetables/Create

@@ -11,8 +11,7 @@ namespace FIT5032_Assignment.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
-
+    
     public partial class TrainingCourse
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,7 +28,6 @@ namespace FIT5032_Assignment.Models
         public string CourseName { get; set; }
         public int CourseCapacity { get; set; }
         public string CourseHeldLocation { get; set; }
-        [AllowHtml]
         public string CourseDescribtion { get; set; }
         public bool IsOver { get; set; }
         public short Rate { get; set; }

@@ -10,9 +10,9 @@ namespace FIT5032_Assignment.Models
     public class TimetableViewModel
     {
         public IEnumerable<TrainingCourseTimetable> Timetables { get; }
-        public int CourseId { get; }
+        public TrainingCourse CourseId { get; }
 
-        public TimetableViewModel(IEnumerable<TrainingCourseTimetable> timetables,int courseId)
+        public TimetableViewModel(IEnumerable<TrainingCourseTimetable> timetables, TrainingCourse courseId)
         {
             Timetables = timetables;
             CourseId = courseId;
