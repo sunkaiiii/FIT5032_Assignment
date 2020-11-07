@@ -11,72 +11,87 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseCapacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseHeldLocation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseDescribtion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsOver)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreRequestId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseCapacity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseHeldLocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseDescribtion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsOver)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreRequestId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @if (User.IsInRole("Coach"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @Html.Label(" ") @Html.ActionLink("Details", "Details", new { id = item.Id }) @Html.Label(" ")
-            }
-            @Html.ActionLink("TimeTable", "FindByCourseId", "TrainingCourseTimetables", new { id = item.Id }, null)
-            @if (User.IsInRole("Coach"))
-            {
-                @Html.Label(" ") @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            }
-        </td>
-    </tr>
-}
-
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseHeldLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseDescribtion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsOver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreRequestId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseCapacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseHeldLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseDescribtion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsOver)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PreRequestId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @if (User.IsInRole("Coach"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @Html.Label(" ") @Html.ActionLink("Details", "Details", new { id = item.Id }) @Html.Label(" ")
+                    }
+                    @Html.ActionLink("TimeTable", "FindByCourseId", "TrainingCourseTimetables", new { id = item.Id }, null)
+                    @if (User.IsInRole("Coach"))
+                    {
+                        @Html.Label(" ") @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script>
+        $(document).ready(function () {
+        $('.table').DataTable();
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />
