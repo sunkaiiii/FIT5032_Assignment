@@ -143,6 +143,9 @@
             <p>
                 @timetable.CourseStartTime - @timetable.CourseEndTime
             </p>
+            <p>
+                @Html.ActionLink("Details", "Details", "TrainingCourseTImetables", new { id = timetable.Id },null)
+            </p>
         }
     </div>
 </div>

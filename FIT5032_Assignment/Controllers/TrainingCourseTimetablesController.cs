@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace FIT5032_Assignment.Controllers
 {
+    [Authorize(Roles = "User, Coach")]
     public class TrainingCourseTimetablesController : Controller
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
@@ -44,6 +45,7 @@ namespace FIT5032_Assignment.Controllers
         }
 
         // GET: TrainingCourseTimetables/Create
+        [Authorize(Roles = "Coach")]
         public ActionResult Create(int? courseId)
         {
             var course = db.TrainingCourses.FirstOrDefault(c => c.Id == courseId);
@@ -59,6 +61,7 @@ namespace FIT5032_Assignment.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] int courseId, TimetableViewModel.AddTimetableModel newTimetable)
         {
@@ -104,6 +107,7 @@ namespace FIT5032_Assignment.Controllers
         }
 
         // GET: TrainingCourseTimetables/Edit/5
+        [Authorize(Roles = "Coach")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -123,6 +127,7 @@ namespace FIT5032_Assignment.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CourseStartTime,CourseEndTime,TrainingCourseId,IsLastOne")] TrainingCourseTimetable trainingCourseTimetable)
         {
@@ -137,6 +142,7 @@ namespace FIT5032_Assignment.Controllers
         }
 
         // GET: TrainingCourseTimetables/Delete/5
+        [Authorize(Roles = "Coach")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -153,6 +159,7 @@ namespace FIT5032_Assignment.Controllers
 
         // POST: TrainingCourseTimetables/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
