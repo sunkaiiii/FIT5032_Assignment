@@ -36,7 +36,12 @@
                             lat: course["LocationLatitude"],
                             lng: course["LocationLongitude"],
                         };
-                        new google.maps.Marker({ position: courseLocation, map: map });
+                        console.debug(courseLocation)
+                        const marker = new google.maps.Marker({
+                            position: courseLocation, map: map, title: course["CourseName"], animation: google.maps.Animation.DROP, label: course["CourseName"] });
+                        marker.addListener("click", () => {
+                            window.location.href = "/TrainingCourses/Details/" + course["CourseId"]
+                        })
                     })
                     infoWindow.setPosition(pos);
                     infoWindow.setContent("Current Location");

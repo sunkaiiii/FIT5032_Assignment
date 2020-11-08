@@ -16,39 +16,33 @@ namespace FIT5032_Assignment.Controllers
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
         // GET: UserHome
 
-        int page = 1;
-        readonly int pageElement = 10;
         public ActionResult Index()
         {
             var id = User.Identity.GetUserId();
             var trainingCourses = db.TrainingCourses
-                .Where(course => !course.IsOver && db.CourseBookings.FirstOrDefault(booking=>booking.TrainingCourseId == course.Id && booking.AspNetUser.Email == User.Identity.Name) == null)
-                .OrderByDescending(course => course.PublishDate)
-                .Skip((page-1)*pageElement)
-                .Take(pageElement).ToList();
+                .Where(course => !course.IsOver && db.CourseBookings.FirstOrDefault(booking => booking.TrainingCourseId == course.Id && booking.AspNetUser.Email == User.Identity.Name) == null)
+                .OrderByDescending(course => course.PublishDate).ToList();
             var timetable = db.CourseBookings
                 .Where(booking => booking.AspNetUserId == id)
                 .Select(booking => booking.TrainingCourse)
-                .Select(course => course.TrainingCourseTimetables.OrderByDescending(t=>t.CourseStartTime).FirstOrDefault())
-                .Where(t=>t!=null && t.CourseStartTime > DateTime.Now)
+                .Select(course => course.TrainingCourseTimetables.OrderByDescending(t => t.CourseStartTime).FirstOrDefault())
+                .Where(t => t != null && t.CourseStartTime > DateTime.Now)
                 .ToList();
-            var wishListStatus = new Dictionary<TrainingCourse,bool>();
+            var wishListStatus = new Dictionary<TrainingCourse, bool>();
             trainingCourses.ForEach(course =>
             {
                 var wishList = db.CourseWishLists.FirstOrDefault(wish => wish.TrainingCourseId == course.Id && wish.AspNetUserId == id);
                 wishListStatus[course] = wishList != null;
             });
-            return View(new UserHomeViewModel(trainingCourses,timetable,wishListStatus));
+            return View(new UserHomeViewModel(trainingCourses, timetable, wishListStatus));
         }
 
         public ActionResult NearByClasses()
         {
             var courses = db.TrainingCourses
                 .Where(course => !course.IsOver)
-                .OrderByDescending(course => course.PublishDate)
-                .Skip((page - 1) * pageElement)
-                .Take(pageElement).ToList()
-                .Select(course=>new NearByCourseViewModel {LocationLongitude = course.LocationLongitude ?? 0,LocationLatitude = course.LocationLatitude ?? 0 });
+                .OrderByDescending(course => course.PublishDate).ToList()
+                .Select(course => new NearByCourseViewModel { LocationLongitude = course.LocationLongitude ?? 0, LocationLatitude = course.LocationLatitude ?? 0, CourseId = course.Id, CourseName = course.CourseName }).ToList();
             return View(courses);
         }
 
@@ -57,13 +51,13 @@ namespace FIT5032_Assignment.Controllers
             var userId = User.Identity.GetUserId();
             var userSkills = db.UserSkills.Where(skill => skill.AspNetUserId == userId).ToList();
             var userWishList = db.CourseWishLists.Where(course => course.AspNetUserId == userId).ToList();
-            return View(new AccountInformationViewModel(userWishList,userSkills));
+            return View(new AccountInformationViewModel(userWishList, userSkills));
         }
 
         public ActionResult DeleteWish(int? id)
         {
-            var wishList = db.CourseWishLists.FirstOrDefault(wish=>wish.Id == id);
-            if(id == null || wishList == null)
+            var wishList = db.CourseWishLists.FirstOrDefault(wish => wish.Id == id);
+            if (id == null || wishList == null)
             {
                 return HttpNotFound();
             }
