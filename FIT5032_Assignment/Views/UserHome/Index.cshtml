@@ -137,9 +137,9 @@
         <h2>My Timetable</h2>
         @foreach (var timetable in Model.TrainingCourseTimetables)
         {
-            <p>
+            <h4 style="font-weight: bold;">
                 @timetable.CourseId.CourseName
-            </p>
+            </h4>
             <p>
                 @timetable.CourseStartTime - @timetable.CourseEndTime
             </p>
