@@ -55,7 +55,14 @@ namespace FIT5032_Assignment.Controllers
             {
                 return HttpNotFound();
             }
-            return View(trainingCourse);
+            var viewModel = new TrainingCourseDetailViewModel();
+            viewModel.TrainingCourse = trainingCourse;
+            if(User.IsInRole("User"))
+            {
+                var userId = User.Identity.GetUserId();
+                viewModel.Booking = db.CourseBookings.FirstOrDefault(booking => booking.AspNetUserId == userId && booking.TrainingCourseId == id);
+            }
+            return View(viewModel);
         }
 
         [Authorize(Roles = "Coach")]

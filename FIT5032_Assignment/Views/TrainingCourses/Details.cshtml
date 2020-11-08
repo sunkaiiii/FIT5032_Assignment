@@ -1,8 +1,10 @@
-﻿@model FIT5032_Assignment.Models.TrainingCourse
+﻿@model FIT5032_Assignment.Models.TrainingCourseDetailViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var course = Model.TrainingCourse;
+    var booking = Model.Booking;
 }
 
 <h2>Details</h2>
@@ -21,50 +23,50 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CourseName)
+            @Html.DisplayNameFor(model => course.CourseName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CourseName)
+            @Html.DisplayFor(model => course.CourseName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CourseCapacity)
+            @Html.DisplayNameFor(model => course.CourseCapacity)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CourseCapacity)
+            @Html.DisplayFor(model => course.CourseCapacity)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CourseHeldLocation)
+            @Html.DisplayNameFor(model => course.CourseHeldLocation)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CourseHeldLocation)
+            @Html.DisplayFor(model => course.CourseHeldLocation)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.IsOver)
+            @Html.DisplayNameFor(model => course.IsOver)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsOver)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rate)
+            @Html.DisplayFor(model => course.IsOver)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PreRequestId)
+            @Html.DisplayNameFor(model => course.Rate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PreRequestId)
+            @Html.DisplayFor(model => course.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => course.PreRequestId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => course.PreRequestId)
         </dd>
 
         <dt>
@@ -72,14 +74,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AspNetUser.FirstName) @Html.DisplayFor(model => model.AspNetUser.LastName)
+            @Html.DisplayFor(model => course.AspNetUser.FirstName) @Html.DisplayFor(model => course.AspNetUser.LastName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CourseDescribtion)
+            @Html.DisplayNameFor(model => course.CourseDescribtion)
         </dt>
 
         <dd>
-            @Html.Raw(Model.CourseDescribtion)
+            @Html.Raw(course.CourseDescribtion)
         </dd>
     </dl>
 
@@ -88,18 +90,30 @@
 <p>
     @if (User.IsInRole("Coach"))
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        @Html.ActionLink("Edit", "Edit", new { id = course.Id })
         @Html.Label(" |")
-        @Html.ActionLink("Control Bookings", "ControlBookings", new { id = Model.Id })
+        @Html.ActionLink("Control Bookings", "ControlBookings", new { id = course.Id })
         @Html.Label(" |")
-        @Html.ActionLink("Sending Email to Members","SendingEmail",new { id = Model.Id })
+        @Html.ActionLink("Sending Email to Members", "SendingEmail", new { id = course.Id })
+    }
+    else if (User.IsInRole("User"))
+    {
+        if (booking == null)
+        {
+            @Html.ActionLink("Booking", "Booking", "Booking", new { id = course.Id }, null) @Html.Label(" |")
+        }
+        else
+        {
+            @Html.ActionLink("Cancel Booking", "Delete","Booking", new { id = booking.Id},null) @Html.Label(" |")
+        }
+
     }
 
     <a href="javascript:history.back()">Back</a>
 </p>
 <script>
     function initMap() {
-      var uluru = {lat: @Model.LocationLatitude, lng: @Model.LocationLongitude};
+      var uluru = {lat: @course.LocationLatitude, lng: @course.LocationLongitude};
       var map = new google.maps.Map(
           document.getElementById('map'), { zoom: 4, center: uluru });
         var marker = new google.maps.Marker({ position: uluru, map: map });

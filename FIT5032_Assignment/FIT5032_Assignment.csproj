@@ -245,6 +245,7 @@
     <Compile Include="Models\TrainingCourse.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TrainingCourseDetailViewModel.cs" />
     <Compile Include="Models\TrainingCourseTimetable.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
     </Compile>
