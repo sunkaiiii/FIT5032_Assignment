@@ -13,15 +13,14 @@ namespace FIT5032_Assignment.Controllers
     public class CoachHomeController : Controller
     {
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
-        private readonly int pageElement = 20;
         // GET: CoachHome
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
             var timetables = db.TrainingCourses.Where(course => course.AspNetUserId == userId)
                 .SelectMany(course => course.TrainingCourseTimetables)
-                .OrderByDescending(timetable=> timetable.CourseStartTime)
-                .Take(pageElement)
+                .Where(timetable=>timetable.CourseStartTime > DateTime.Now)
+                .OrderBy(timetable=> timetable.CourseStartTime)
                 .ToList();
             return View(new CoachHomeViewModel(timetables));
         }

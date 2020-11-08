@@ -2,16 +2,102 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var todayClass = Model.Timetable.Where(timetable => timetable.CourseStartTime.Date == DateTime.Now.Date);
+    var nextweekClass = Model.Timetable.Where(timetable => timetable.CourseStartTime.Date < DateTime.Now.AddDays(7));
+    var otherClasee = Model.Timetable.Where(timetable => timetable.CourseStartTime.Date > DateTime.Now.AddDays(7));
 }
 
-<h2>Index</h2>
+<h1>Home</h1>
+<h2>Upcomming courses</h2>
+<style>
+    div.card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 8px;
+    }
+    div.card-header_1 {
+        background-color: darkslateblue;
+        color:white;
+        padding: 10px;
+        font-size: 40px;
+    }
+    div.card-header_2 {
+        background-color: dodgerblue;
+        color: lightcyan;
+        padding: 10px;
+        font-size: 40px;
+    }
+    div.card-header_3 {
+        background-color: lightblue;
+        color: darkslategray;
+        padding: 10px;
+        font-size: 40px;
+    }
 
+    div.card-container {
+        padding: 10px;
+    }
+</style>
+<h3>
+    Today
+</h3>
 <div class="row">
-    @foreach(var timetable in Model.Timetable)
+    @foreach (var timetable in todayClass)
     {
-        <div class="col-md-6">
-            <li>@timetable.CourseId.CourseName</li>
-            <li>@timetable.CourseStartTime.ToString()</li>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header_1">
+                    @timetable.CourseId.CourseName
+                </div>
+                <div class="card-container">
+                    @timetable.CourseStartTime.ToString() - @timetable.CourseEndTime.ToString()
+                    @Html.ActionLink("Details", "Details", "TrainingCourseTimetables", new { id = timetable.Id }, null)
+                </div>
+            </div>
+
+        </div>
+    }
+    @if (todayClass.Count() == 0 )
+    {
+        @Html.Label("No classes")
+    }
+    </div>
+<h3>
+    Next 7 days
+</h3>
+<div class="row">
+    @foreach (var timetable in nextweekClass)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header_2">
+                    @timetable.CourseId.CourseName
+                </div>
+                <div class="card-container">
+                    @timetable.CourseStartTime.ToString() - @timetable.CourseEndTime.ToString()
+                    @Html.ActionLink("Details", "Details", "TrainingCourseTimetables", new { id = timetable.Id }, null)
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+<h3>
+    Other
+</h3>
+<div class="row">
+    @foreach (var timetable in otherClasee)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header_3">
+                    @timetable.CourseId.CourseName
+                </div>
+                <div class="card-container">
+                    @timetable.CourseStartTime.ToString() - @timetable.CourseEndTime.ToString()
+                    @Html.ActionLink("Details","Details", "TrainingCourseTimetables",new { id = timetable.Id},null)
+                </div>
+            </div>
+
         </div>
     }
 </div>
