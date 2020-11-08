@@ -16,7 +16,7 @@ namespace FIT5032_Assignment.Controllers
         private FIT5032_Assignment_ModelContainer db = new FIT5032_Assignment_ModelContainer();
         // GET: UserHome
 
-        public ActionResult Index()
+        public ActionResult Index(int? wishStatus)
         {
             var id = User.Identity.GetUserId();
             var trainingCourses = db.TrainingCourses
@@ -34,6 +34,15 @@ namespace FIT5032_Assignment.Controllers
                 var wishList = db.CourseWishLists.FirstOrDefault(wish => wish.TrainingCourseId == course.Id && wish.AspNetUserId == id);
                 wishListStatus[course] = wishList != null;
             });
+            if(wishStatus!=null)
+            {
+                ViewBag.WishStatus = wishStatus;
+            }
+            else
+            {
+                ViewBag.WishStatus = 0;
+            }
+            
             return View(new UserHomeViewModel(trainingCourses, timetable, wishListStatus));
         }
 
@@ -63,7 +72,7 @@ namespace FIT5032_Assignment.Controllers
             }
             db.CourseWishLists.Remove(wishList);
             db.SaveChanges();
-            return RedirectToAction(nameof(AccountInformation));
+            return RedirectToAction(nameof(Index), new { wishStatus = 2 });
         }
 
         public ActionResult DeleteWishByCourseId(int? courseId)
@@ -71,7 +80,7 @@ namespace FIT5032_Assignment.Controllers
             var wishList = db.CourseWishLists.Where(wish => wish.TrainingCourseId == courseId);
             db.CourseWishLists.RemoveRange(wishList);
             db.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { wishStatus = 2 });
         }
 
         public ActionResult AddWish(int? courseId)
@@ -87,7 +96,7 @@ namespace FIT5032_Assignment.Controllers
             wish.AspNetUserId = User.Identity.GetUserId();
             db.CourseWishLists.Add(wish);
             db.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index),new { wishStatus = 1 });
         }
     }
 }

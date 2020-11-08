@@ -8,7 +8,7 @@
 
 <h2>Trend</h2>
 
-<div>
+<div class="row">
     <div class="col-md-8">
         <h3>The most popular courses</h3>
         <canvas id="myChart"></canvas>
@@ -16,13 +16,22 @@
     <div class="col-md-3">
         <h3>Top rating courses</h3>
         <table class="table">
+            <tr>
+                <th>
+                    Course Name
+                </th>
+                <th>
+                    Rate
+                </th>
+                <th></th>
+            </tr>
             @foreach(var course in TopRatingCourses)
             {
                 <tr>
                     <td>@Html.DisplayFor(model => course.CourseName);</td>
                     <td>@Html.DisplayFor(model => course.Rate);</td>
                     <td>
-                        @Html.ActionLink("Detail", "Details", "TrainingCourses",new { id = course.Id },new { });
+                        @Html.ActionLink("Detail", "Details", "TrainingCourses",new { id = course.Id },new { })
                     </td>
                 </tr>
             }
@@ -54,7 +63,8 @@
             datasets: [{
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: data
+                data: data,
+                label:"The most popular course"
             }]
         },
 

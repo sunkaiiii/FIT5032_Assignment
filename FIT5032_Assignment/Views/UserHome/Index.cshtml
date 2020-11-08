@@ -45,7 +45,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <img src="~/Content/Images/gym.jpg"  srcset="~/Content/Images/gym_640.jpg 640w,~/Content/Images/gym_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
+            <img src="~/Content/Images/gym.jpg" srcset="~/Content/Images/gym_640.jpg 640w,~/Content/Images/gym_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
         </div>
         <div class="swiper-slide">
             <img src="~/Content/Images/socker.jpg" srcset="~/Content/Images/socker_640.jpg 640w,~/Content/Images/socker_320.jpg 320w" sizes="(max-width: 400px) 320px,640px" alt="Elva dressed as a fairy">
@@ -94,7 +94,7 @@
     div.card-header {
         background-color: coral;
         color: white;
-        height:150px;
+        height: 150px;
         padding: 10px;
         font-size: 40px;
     }
@@ -120,7 +120,7 @@
                                 <h4>@course.CourseName</h4>
                                 @if (Model.WishListStatus[course])
                                 {
-                                    <a href="/UserHome/DeleteWishByCourseId?courseId=@course.Id"><img style="float:right;vertical-align:top" src="~/Content/Images/cancelwish.png" a= /></a>
+                                    <a  href="/UserHome/DeleteWishByCourseId?courseId=@course.Id"><img style="float:right;vertical-align:top" src="~/Content/Images/cancelwish.png" a= /></a>
                                 }
                                 else
                                 {
@@ -128,9 +128,9 @@
                                 }
 
                             </div>
-                            
+
                             <h4>@course.CourseHeldLocation</h4>
-                            <h4>@course.CourseCapacity</h4>
+                            <h4>Capacity: @course.CourseCapacity</h4>
                         </div>
                         <div class="card-container">
                             <p>
@@ -157,8 +157,19 @@
                 @timetable.CourseStartTime - @timetable.CourseEndTime
             </p>
             <p>
-                @Html.ActionLink("Details", "Details", "TrainingCourseTImetables", new { id = timetable.Id },null)
+                @Html.ActionLink("Details", "Details", "TrainingCourseTImetables", new { id = timetable.Id }, null)
             </p>
         }
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        if (@ViewBag.WishStatus == 1) {
+            $.notify("Add the wish successfully","success");
+        } else if (@ViewBag.WishStatus == 2) {
+            $.notify("Delete the wish successfully","success");
+        }
+        
+    }
+    );
+</script>
