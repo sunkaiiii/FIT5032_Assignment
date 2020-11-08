@@ -32,7 +32,13 @@ namespace FIT5032_Assignment.Controllers
                 .Select(course => course.TrainingCourseTimetables.OrderByDescending(t=>t.CourseStartTime).FirstOrDefault())
                 .Where(t=>t!=null && t.CourseStartTime > DateTime.Now)
                 .ToList();
-            return View(new UserHomeViewModel(trainingCourses,timetable));
+            var wishListStatus = new Dictionary<TrainingCourse,bool>();
+            trainingCourses.ForEach(course =>
+            {
+                var wishList = db.CourseWishLists.FirstOrDefault(wish => wish.TrainingCourseId == course.Id && wish.AspNetUserId == id);
+                wishListStatus[course] = wishList != null;
+            });
+            return View(new UserHomeViewModel(trainingCourses,timetable,wishListStatus));
         }
 
         public ActionResult NearByClasses()
@@ -46,5 +52,48 @@ namespace FIT5032_Assignment.Controllers
             return View(courses);
         }
 
+        public ActionResult AccountInformation()
+        {
+            var userId = User.Identity.GetUserId();
+            var userSkills = db.UserSkills.Where(skill => skill.AspNetUserId == userId).ToList();
+            var userWishList = db.CourseWishLists.Where(course => course.AspNetUserId == userId).ToList();
+            return View(new AccountInformationViewModel(userWishList,userSkills));
+        }
+
+        public ActionResult DeleteWish(int? id)
+        {
+            var wishList = db.CourseWishLists.FirstOrDefault(wish=>wish.Id == id);
+            if(id == null || wishList == null)
+            {
+                return HttpNotFound();
+            }
+            db.CourseWishLists.Remove(wishList);
+            db.SaveChanges();
+            return RedirectToAction(nameof(AccountInformation));
+        }
+
+        public ActionResult DeleteWishByCourseId(int? courseId)
+        {
+            var wishList = db.CourseWishLists.Where(wish => wish.TrainingCourseId == courseId);
+            db.CourseWishLists.RemoveRange(wishList);
+            db.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult AddWish(int? courseId)
+        {
+            var course = db.TrainingCourses.FirstOrDefault(c => c.Id == courseId);
+            if (courseId == null || course == null)
+            {
+                return HttpNotFound();
+            }
+            CourseWishList wish = new CourseWishList();
+            wish.InsertDate = DateTime.Now;
+            wish.TrainingCourseId = course.Id;
+            wish.AspNetUserId = User.Identity.GetUserId();
+            db.CourseWishLists.Add(wish);
+            db.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

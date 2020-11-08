@@ -1,0 +1,73 @@
+﻿@model FIT5032_Assignment.Models.AccountInformationViewModel
+@{
+    ViewBag.Title = "AccountInformation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div.card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 8px;
+    }
+
+    div.card-header {
+        background-color: darkslateblue;
+        color: white;
+        padding: 18px;
+        font-size: 40px;
+    }
+
+    div.card-container {
+        padding: 10px;
+    }
+</style>
+
+<h2>Account Information</h2>
+<div class="row">
+    <div class="col-lg-7">
+        <h2>My Skills</h2>
+        @foreach(var skill in Model.UserSkills)
+        {
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    @skill.TrainingCourse.CourseName
+                </div>
+                <div class="card-container">
+                    <p>
+                        @Html.Label("Receiving Date:") @Html.DisplayFor(item => skill.SkillReceivedDate)
+                    </p>
+                    <p>
+                        @Html.Label("Coach Name:") @Html.DisplayFor(item => skill.TrainingCourse.AspNetUser.FirstName) @Html.DisplayFor(item => skill.TrainingCourse.AspNetUser.LastName)
+                    </p>
+                    
+                    <p>
+                        @Html.ActionLink("Details", "Details", "TrainingCourses", new { id = skill.TrainingCourseId }, null)
+                    </p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <h2>My WhishList</h2>
+        @foreach (var whishList in Model.WhishList)
+        {
+            <h4 style="font-weight: bold;">
+                @whishList.TrainingCourse.CourseName
+            </h4>
+            <p>
+                Coach Name: @Html.DisplayFor(item => whishList.TrainingCourse.AspNetUser.FirstName) @Html.DisplayFor(item => whishList.TrainingCourse.AspNetUser.LastName)
+            </p>
+            <p>
+                Added Date: @Html.DisplayFor(item => whishList.InsertDate)
+            </p>
+            <p>
+                @Html.ActionLink("Booking Course", "Booking", "Booking", new { id = whishList.TrainingCourseId }, new { })
+                @Html.ActionLink("Details", "Details", "TrainingCourses", new { id = whishList.TrainingCourseId }, null)
+                @Html.ActionLink("Delete wish", "DeleteWish", "UserHome", new { id = whishList.Id }, new { })
+            </p>
+        }
+    </div>
+</div>
+

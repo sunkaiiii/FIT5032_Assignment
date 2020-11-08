@@ -190,6 +190,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountInformationViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>FIT5032_Assignment_Model.tt</DependentUpon>
@@ -429,6 +430,8 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\addwish.png" />
+    <Content Include="Content\Images\cancelwish.png" />
     <Content Include="Content\Images\cycling.jpg" />
     <Content Include="Content\Images\cycling_320.jpg" />
     <Content Include="Content\Images\cycling_640.jpg" />
@@ -848,6 +851,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserHome\AccountInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

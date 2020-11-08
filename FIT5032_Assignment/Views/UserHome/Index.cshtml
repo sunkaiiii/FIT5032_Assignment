@@ -92,7 +92,7 @@
     }
 
     div.card-header {
-        background-color: #4CAF50;
+        background-color: coral;
         color: white;
         padding: 10px;
         font-size: 40px;
@@ -112,10 +112,22 @@
         <div class="row">
             @foreach (var course in Model.TrainingCourses)
             {
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4>@course.CourseName</h4>
+                            <div>
+                                <h4>@course.CourseName</h4>
+                                @if (Model.WishListStatus[course])
+                                {
+                                    <a href="/UserHome/DeleteWishByCourseId?courseId=@course.Id"><img style="float:right;vertical-align:top" src="~/Content/Images/cancelwish.png" a= /></a>
+                                }
+                                else
+                                {
+                                    <a href="/UserHome/AddWish?courseId=@course.Id"><img style="float:right;vertical-align:top" src="~/Content/Images/addwish.png" a= /></a>
+                                }
+
+                            </div>
+                            
                             <h4>@course.CourseHeldLocation</h4>
                             <h4>@course.CourseCapacity</h4>
                         </div>

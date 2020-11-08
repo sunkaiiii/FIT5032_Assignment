@@ -67,7 +67,16 @@ namespace FIT5032_Assignment.Controllers
             db.CourseBookings.Add(bookingModel);
             db.SaveChanges();
             Response.Write("<script>alert('adding successfully'); window.location.href=document.referrer;</script>");
+            RemoveUserWishList(id);
             return;
+        }
+
+        private void RemoveUserWishList(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var wishLists = db.CourseWishLists.Where(wish => wish.AspNetUserId == userId && wish.TrainingCourseId == id);
+            db.CourseWishLists.RemoveRange(wishLists);
+            db.SaveChanges();
         }
 
         public ActionResult Rating(int? id)
