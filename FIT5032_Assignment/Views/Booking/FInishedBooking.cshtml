@@ -9,52 +9,68 @@
 
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TrainingCourse.CourseName)
-        </th>
-        <th>
-            "Coach Name"
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrainingCourse.CourseHeldLocation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Feedback)
-        </th>
-    </tr>
-
-    @foreach (var booking in Model)
-    {
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(item => booking.TrainingCourse.CourseName)
-            </td>
-            <td>
-                @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.FirstName)  @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(item => booking.BookingTime)
-            </td>
-            <td>
-                @Html.DisplayFor(item => booking.TrainingCourse.CourseHeldLocation)
-            </td>
-            <td>
-                @Html.DisplayFor(item => booking.Feedback)
-            </td>
-            <td>
-                @if (!booking.IsRated)
-                {
-                    @Html.ActionLink("Rating Course", "Rating", new { id = booking.Id })
-                }
-                else
-                {
-                    @Html.ActionLink("Rating Detail", "RatingDetail", new { id = booking.Id })
-                }
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingCourse.CourseName)
+            </th>
+            <th>
+                "Coach Name"
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingCourse.CourseHeldLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feedback)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(item => booking.TrainingCourse.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.FirstName)  @Html.DisplayFor(item => booking.TrainingCourse.AspNetUser.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => booking.BookingTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => booking.TrainingCourse.CourseHeldLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => booking.Feedback)
+                </td>
+                <td>
+                    @if (!booking.IsRated)
+                    {
+                        @Html.ActionLink("Rating Course", "Rating", new { id = booking.Id })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Rating Detail", "RatingDetail", new { id = booking.Id })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script>
+        $(document).ready(function () {
+        $('.table').DataTable();
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />
