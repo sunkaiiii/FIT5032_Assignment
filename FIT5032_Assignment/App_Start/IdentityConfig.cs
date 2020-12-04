@@ -49,7 +49,6 @@ namespace FIT5032_Assignment
                 await myMessage.AddAttachmentAsync(postFile.FileName, postFile.InputStream);
             }
             var apiKey = ConfigurationManager.AppSettings["SendGridApi"];
-            //var apiKey = "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";
             var client = new SendGridClient(apiKey);
             var response = await client.SendEmailAsync(myMessage);
             Console.WriteLine(response.Body);
