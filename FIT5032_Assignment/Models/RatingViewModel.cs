@@ -12,7 +12,7 @@ namespace FIT5032_Assignment.Models
         public int BookingId { get; set; }
         [Required]
         public string BookingName { get; set; }
-        [Range(0,10,ErrorMessage = "Enter rating score between 0 to 1000")]
+        [Range(0,10,ErrorMessage = "Enter rating score between 0 to 10")]
         [Required]
         public short RatingScore { get; set; }
         public string Feedback { get; set; }

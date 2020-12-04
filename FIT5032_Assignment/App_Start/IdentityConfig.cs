@@ -38,7 +38,7 @@ namespace FIT5032_Assignment
              <br/>
              <br/>
             Best Regards, <br/>
-            Vibrant your mind <br/>
+            Vibrant your body <br/>
             55 King Rd Autumn, VIC,9999 <br/>
             012345678<br/>
             <img src=http://cdn.mcauto-images-production.sendgrid.net/7d8250131a038040/684a1fec-03be-4dd8-b957-446d7e2cf5c6/569x320.jpg  width='200'>";
@@ -69,7 +69,7 @@ namespace FIT5032_Assignment
              <br/>
              <br/>
             Best Regards, <br/>
-            Vibrant your mind <br/>
+            Vibrant your body <br/>
             55 King Rd Autumn, VIC,9999 <br/>
             012345678<br/>
 <img src=http://cdn.mcauto-images-production.sendgrid.net/7d8250131a038040/684a1fec-03be-4dd8-b957-446d7e2cf5c6/569x320.jpg  width='200'>";
