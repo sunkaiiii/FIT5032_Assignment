@@ -1,39 +1,45 @@
+/**
+ * Copyright (c) Tiny Technologies, Inc. All rights reserved.
+ * Licensed under the LGPL or a commercial license.
+ * For LGPL see License.txt in the project root for license information.
+ * For commercial licenses see https://www.tiny.cloud/
+ *
+ * Version: 5.10.2 (2021-11-17)
+ */
 (function () {
-var hr = (function () {
-  'use strict';
+    'use strict';
 
-  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-  var register = function (editor) {
-    editor.addCommand('InsertHorizontalRule', function () {
-      editor.execCommand('mceInsertContent', false, '<hr />');
-    });
-  };
-  var $_7m2n29cmjm0ofyjv = { register: register };
+    var register$1 = function (editor) {
+      editor.addCommand('InsertHorizontalRule', function () {
+        editor.execCommand('mceInsertContent', false, '<hr />');
+      });
+    };
 
-  var register$1 = function (editor) {
-    editor.addButton('hr', {
-      icon: 'hr',
-      tooltip: 'Horizontal line',
-      cmd: 'InsertHorizontalRule'
-    });
-    editor.addMenuItem('hr', {
-      icon: 'hr',
-      text: 'Horizontal line',
-      cmd: 'InsertHorizontalRule',
-      context: 'insert'
-    });
-  };
-  var $_ubzb3cnjm0ofyjw = { register: register$1 };
+    var register = function (editor) {
+      var onAction = function () {
+        return editor.execCommand('InsertHorizontalRule');
+      };
+      editor.ui.registry.addButton('hr', {
+        icon: 'horizontal-rule',
+        tooltip: 'Horizontal line',
+        onAction: onAction
+      });
+      editor.ui.registry.addMenuItem('hr', {
+        icon: 'horizontal-rule',
+        text: 'Horizontal line',
+        onAction: onAction
+      });
+    };
 
-  global.add('hr', function (editor) {
-    $_7m2n29cmjm0ofyjv.register(editor);
-    $_ubzb3cnjm0ofyjw.register(editor);
-  });
-  function Plugin () {
-  }
+    function Plugin () {
+      global.add('hr', function (editor) {
+        register$1(editor);
+        register(editor);
+      });
+    }
 
-  return Plugin;
+    Plugin();
 
 }());
-})();
